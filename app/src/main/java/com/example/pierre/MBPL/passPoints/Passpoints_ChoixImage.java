@@ -1,5 +1,8 @@
 package com.example.pierre.MBPL.passPoints;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -9,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -96,11 +101,17 @@ public class Passpoints_ChoixImage extends AppCompatActivity {
 
             myLayout.addView(iv);
 
+
+
+
             l++;
 
 
         }
         Toast.makeText(Passpoints_ChoixImage.this, "Veuillez choisir votre image", Toast.LENGTH_SHORT).show();
+
+
+
 
 
     }

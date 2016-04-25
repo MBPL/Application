@@ -3,6 +3,8 @@ package com.example.pierre.MBPL;
 /**
  * Created by pierre on 09/04/16.
  */
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -14,6 +16,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -41,20 +44,22 @@ public class TabFragment1 extends Fragment {
         myScrollView_tab1 = (ScrollView) rootView.findViewById(R.id.container_scroll_view_tab1);
         myLayout_tab1 = (GridLayout) rootView.findViewById(R.id.container_tab1);
 
-        tab.add(new TypeAuthentification("Passpoints_ChoixImage", "passpoints96x96", 1, 0, 0));
-        tab.add(new TypeAuthentification("mdp2", "icon96x96_2", 2, 0, 0));
-        tab.add(new TypeAuthentification("mdp3", "icon96x96_3", 3, 0, 0));
-        tab.add(new TypeAuthentification("mdp4", "icon96x96_4", 4, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", 5, 0, 0));
+        String descPasspoints = "- Choisir une image.\n- Choisir au moins un point à repérer sur cette image.\n- Faire 'Suivant'.\n- Retrouver ces points.";
+
+        tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, 1, 0, 0));
+        tab.add(new TypeAuthentification("mdp2", "icon96x96_2", "d", 2, 0, 0));
+        tab.add(new TypeAuthentification("mdp3", "icon96x96_3", "d", 3, 0, 0));
+        tab.add(new TypeAuthentification("mdp4", "icon96x96_4", "d", 4, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
 
         Point size = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
@@ -91,20 +96,14 @@ public class TabFragment1 extends Fragment {
             iv.setOnClickListener(new ImageView.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent appel;
-                    switch (tab.get(j).getNom()){
-                        case "Passpoints_ChoixImage":
-                            appel = new Intent(getActivity(), Passpoints_ChoixImage.class);
-                            break;
-                        default:
-                            appel = new Intent(getActivity(), Passpoints_ChoixImage.class);
-                            break;
-                    }
-                    startActivity(appel);
+                    showAlertDescription(v,j);
+
                 }
             });
 
             myLayout_tab1.addView(iv);
+
+
 
             c++;
             if(c>1) {
@@ -113,6 +112,7 @@ public class TabFragment1 extends Fragment {
             }
             System.out.println("c = "+c+" l = "+l);
         }
+
 
 
         return rootView;
@@ -167,6 +167,29 @@ public class TabFragment1 extends Fragment {
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    public void showAlertDescription(View v, final int j) {
+        AlertDialog.Builder myAlert = new AlertDialog.Builder(getActivity());
+        myAlert.setMessage(tab.get(j).getDesc())
+                .setPositiveButton("Essayer !", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent appel;
+                        switch (tab.get(j).getNom()){
+                            case "Passpoints":
+                                appel = new Intent(getActivity(), Passpoints_ChoixImage.class);
+                                break;
+                            default:
+                                appel = new Intent(getActivity(), Passpoints_ChoixImage.class);
+                                break;
+                        }
+                        startActivity(appel);
+                    }
+                })
+                .setTitle(tab.get(j).getNom())
+                .create();
+        myAlert.show();
     }
 
 

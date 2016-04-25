@@ -4,20 +4,31 @@ package com.example.pierre.MBPL;
  * Created by pierre on 01/03/16.
  */
 public class TypeAuthentification {
+
+
     String nom;
     String image;
+    String desc;
     int numeroID;
     int security;
     int utilisability;
 
-    public TypeAuthentification(String nom, String image, int numeroID, int utilisability, int security) {
+    public TypeAuthentification(String nom, String image, String desc, int numeroID, int utilisability, int security) {
         this.nom = nom;
         this.image = image;
+        this.desc = desc;
         this.numeroID = numeroID;
         this.utilisability = utilisability;
         this.security = security;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
     public int getSecurity() {
         return security;
     }
