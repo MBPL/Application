@@ -8,7 +8,8 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.pierre.MBPL.*;
+import com.example.pierre.MBPL.R;
+
 /**
  * Created by benja135 on 06/03/16.
  * Configuration avancé de la méthode Déjà Vu.
@@ -27,16 +28,13 @@ public class Configuration extends Activity {
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerIconNumber);
 
-        List<Integer> exemple = new ArrayList<>();
-        exemple.add(6);
-        exemple.add(24);
-        exemple.add(96);
+        List<Integer> listeNombre = new ArrayList<>();
+        listeNombre.add(6);
+        listeNombre.add(24);
+        listeNombre.add(96);
 
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_item,
-                exemple
-        );
+        ArrayAdapter<Integer> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listeNombre);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
