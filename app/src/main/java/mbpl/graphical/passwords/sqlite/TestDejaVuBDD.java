@@ -1,26 +1,23 @@
 package mbpl.graphical.passwords.sqlite;
 
-/**
- * Created by Matteo on 14/04/2016.
- */
-
-
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.matteo.R;
+import mbpl.graphical.passwords.R;
 
 /**
+ * TODO à supprimer à la fin
+ * Created by Matteo on 07/04/2016.
  * Tester d'inserer une méthode DejaVu dans la base, supprimer etc..
  */
-public class TestDejaVuBDD extends ActionBarActivity {
+public class TestDejaVuBDD extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bdd);
+        setContentView(R.layout.menu_accueil);
 
         this.deleteDatabase("methode.db");
 
@@ -48,7 +45,7 @@ public class TestDejaVuBDD extends ActionBarActivity {
                 Log.v("mdp avant", "=>" + dejaVuFromBdd1.getMdp());
 
                 //Test modification
-                dejaVuManager.updateDejaVu(dejaVuFromBdd1, 2, 2,3f);
+                dejaVuManager.updateDejaVu(dejaVuFromBdd1, 2, 2, 3f);
 
                 //Re - Récupération
                 dejaVuFromBdd1 = dejaVuManager.getDejaVu(methodeDejaVu);
@@ -71,14 +68,11 @@ public class TestDejaVuBDD extends ActionBarActivity {
                 Log.v("mdp apres", "=>" + dejaVuFromBdd1.getMdp());
 
 
-
             }
 
             //Suppression méthode 1
             dejaVuManager.removeDejaVu(dejaVuFromBdd1);
         }
-
-
 
         dejaVuManager.close();
 

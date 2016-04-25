@@ -2,9 +2,6 @@ package mbpl.graphical.passwords.sqlite;
 
 /**
  * Created by Matteo on 08/04/2016.
- */
-
-/**
  * Methode DejaVu
  */
 public class DejaVu {
@@ -12,7 +9,7 @@ public class DejaVu {
 
     private int id, bruteForce, dictionaryAttack, shoulderSurfing, smudgeAttack, eyeTracking, spyWare, espaceMdp;
     private int apprentissage, memorisation, temps, satisfaction, nb_tentative_reussie, nb_tentative_echouee;
-    private String nom, categorie,mdp;
+    private String nom, categorie, mdp;
     private Float indiceSecurite, indiceUtilisabilite, temps_auth_moyen;
 
 
@@ -37,7 +34,7 @@ public class DejaVu {
         this.nb_tentative_echouee = 0;
         this.nb_tentative_reussie = 0;
         this.temps_auth_moyen = 0f;
-        this.mdp= "";
+        this.mdp = "";
     }
 
     public int getId() {

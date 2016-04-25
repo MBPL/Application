@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by Matteo on 07/04/2016.
- */
-
-/**
  * Cette classe permet de créer la base de données ainsi que la table méthode qui contiendra toutes les informations requises.
  */
 public class MySQLiteDatabase extends SQLiteOpenHelper{

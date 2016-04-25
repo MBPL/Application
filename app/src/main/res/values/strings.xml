@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidPassword</string>
+    <string name="app_name">Android Password</string>
     <string name="action_settings">Settings</string>
     <string name="security">Sécurité</string>
     <string name="usability">Utilisabilité</string>
