@@ -21,6 +21,7 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
+import com.example.pierre.MBPL.DejaVu.*;
 import com.example.pierre.MBPL.passPoints.Passpoints_ChoixImage;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class TabFragment1 extends Fragment {
         String descPasspoints = "- Choisir une image.\n- Choisir au moins un point à repérer sur cette image.\n- Faire 'Suivant'.\n- Retrouver ces points.";
 
         tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, 1, 0, 0));
-        tab.add(new TypeAuthentification("mdp2", "icon96x96_2", "d", 2, 0, 0));
+        tab.add(new TypeAuthentification("Déjà Vu", "icon96x96_2", "desc deja vu", 2, 0, 0));
         tab.add(new TypeAuthentification("mdp3", "icon96x96_3", "d", 3, 0, 0));
         tab.add(new TypeAuthentification("mdp4", "icon96x96_4", "d", 4, 0, 0));
         tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
@@ -179,6 +180,9 @@ public class TabFragment1 extends Fragment {
                         switch (tab.get(j).getNom()){
                             case "Passpoints":
                                 appel = new Intent(getActivity(), Passpoints_ChoixImage.class);
+                                break;
+                            case "Déjà Vu":
+                                appel = new Intent(getActivity(), com.example.pierre.MBPL.DejaVu.Accueil.class);
                                 break;
                             default:
                                 appel = new Intent(getActivity(), Passpoints_ChoixImage.class);
