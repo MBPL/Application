@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pierre.MBPL">
+    package="mbpl.graphical.passwords">
 
 
     <application
@@ -10,28 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.pierre.MBPL.passPoints.Passpoints_ChoixPoints"
+            android:name="mbpl.graphical.passwords.passPoints.ChoixPoints"
             android:label="PassPoints : Choix des points"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
+
         <activity
-            android:name="com.example.pierre.MBPL.passPoints.Passpoints_Deverouillage"
+            android:name="mbpl.graphical.passwords.passPoints.Deverouillage"
             android:label="PassPoints : Deverouillage"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
+
         <activity
-            android:name="com.example.pierre.MBPL.passPoints.Passpoints_ChoixImage"
+            android:name="mbpl.graphical.passwords.passPoints.ChoixImage"
             android:label="PassPoints : Choix de l&apos;image"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
+
         <activity
-            android:name="com.example.pierre.MBPL.Accueil"
+            android:name="mbpl.graphical.passwords.Accueil"
             android:label="MBPL"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -42,20 +42,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DejaVu.Accueil" android:screenOrientation="portrait"
+        <activity android:name="mbpl.graphical.passwords.dejaVu.Accueil" android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".DejaVu.Authentification" android:screenOrientation="portrait"
+        <activity android:name="mbpl.graphical.passwords.dejaVu.Authentification" android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".DejaVu.Creation" android:screenOrientation="portrait"
+        <activity android:name="mbpl.graphical.passwords.dejaVu.Creation" android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".DejaVu.Configuration" android:screenOrientation="portrait"
+        <activity android:name="mbpl.graphical.passwords.dejaVu.Configuration" android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-
-
-
-
-
-
 
     </application>
 
