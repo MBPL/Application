@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class Authentification extends AppCompatActivity {
 
-    private final int nbIcone = 259;
+    private final int nbIcone = 258;
     private final int tailleIcone = 256;
     private final int nbLigne = 6;
     private final int nbColonne = 4;
@@ -87,7 +87,7 @@ public class Authentification extends AppCompatActivity {
                     numIcon = trueMotDePasse.get(inputMotDePasse.size());
                 } else {
                     do {
-                        numIcon = randomInto(1, 259);
+                        numIcon = randomInto(1, nbIcone);
                     } while (iconAlreadyDisplayed[numIcon - 1] || numIcon == iconToBeDisplayed);
                 }
                 iconAlreadyDisplayed[numIcon - 1] = true;

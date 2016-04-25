@@ -34,7 +34,7 @@ import com.example.pierre.MBPL.CustomProgressBar.CustomProgress;
  */
 public class Creation extends AppCompatActivity {
 
-    private final int nbIcone = 259;
+    private final int nbIcone = 258;
     private final int tailleIcone = 96;
     private final int nbColonne = 10;
     private final int minPassSize = 1;
