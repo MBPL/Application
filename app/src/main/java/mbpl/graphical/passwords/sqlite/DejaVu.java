@@ -2,6 +2,7 @@ package mbpl.graphical.passwords.sqlite;
 
 /**
  * Created by Matteo on 08/04/2016.
+ *
  */
 
 /**

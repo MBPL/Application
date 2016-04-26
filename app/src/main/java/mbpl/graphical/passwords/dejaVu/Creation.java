@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 
 import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.customProgressBar.CustomProgress;
+import mbpl.graphical.passwords.sqlite.DejaVu;
+import mbpl.graphical.passwords.sqlite.DejaVuManager;
 
 /**
  * Created by benja135 on 05/03/16.
@@ -127,7 +130,13 @@ public class Creation extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (pass.size() > 0) {
-                        // TODO rentrer le mdp dans la base
+                        DejaVuManager dejaVuBDD = new DejaVuManager(getApplicationContext());
+                        dejaVuBDD.open();
+                        DejaVu dejaVu = dejaVuBDD.getDejaVu();
+                        Log.v("pass", pass.toString());
+                        System.out.println(pass.toString());
+                        //dejaVuBDD.setPassword(dejaVu, "");
+                        dejaVuBDD.close();
                         Intent authentification = new Intent(Creation.this, Authentification.class);
                         startActivity(authentification);
                     }
