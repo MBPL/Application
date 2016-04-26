@@ -1,13 +1,13 @@
 package mbpl.graphical.passwords.sqlite;
 
 /**
- * Created by Matteo on 08/04/2016.
+ * Created by Matteo on 26/04/2016.
  */
 
 /**
- * Methode DejaVu.
+ * Methode Passfaces
  */
-public class DejaVu {
+public class Passfaces {
 
 
     private int id, bruteForce, dictionaryAttack, shoulderSurfing, smudgeAttack, eyeTracking, spyWare, espaceMdp;
@@ -17,23 +17,23 @@ public class DejaVu {
     private int nbIcone, doublon;
 
 
-    public DejaVu() {
-        this.id = 1;
-        this.nom = "Déjà Vu";
+    public Passfaces() {
+        this.id = 3;
+        this.nom = "Passfaces";
         this.categorie = "reconnaissance";
         this.bruteForce = 0;
         this.dictionaryAttack = 2;
         this.shoulderSurfing = 2;
         this.smudgeAttack = 5;
-        this.eyeTracking = 5;
+        this.eyeTracking = 3;
         this.spyWare = 3;
         this.espaceMdp = 1;
-        this.indiceSecurite = 2.57f;
-        this.apprentissage = 2;
+        this.indiceSecurite = 2.29f;
+        this.apprentissage = 5;
         this.memorisation = 3;
         this.temps = 3;
         this.satisfaction = 3;
-        this.indiceUtilisabilite = 2.75f;
+        this.indiceUtilisabilite = 3.5f;
 
         this.nb_tentative_echouee = 0;
         this.nb_tentative_reussie = 0;

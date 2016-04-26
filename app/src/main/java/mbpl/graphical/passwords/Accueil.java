@@ -9,6 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import mbpl.graphical.passwords.R;
+import mbpl.graphical.passwords.sqlite.DejaVu;
+import mbpl.graphical.passwords.sqlite.DejaVuManager;
+import mbpl.graphical.passwords.sqlite.Passpoint;
+import mbpl.graphical.passwords.sqlite.PasspointManager;
 
 
 public class Accueil extends AppCompatActivity {
@@ -17,6 +21,21 @@ public class Accueil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // On crée les tables en BDD si elles n'existent pas
+        DejaVuManager dejaVuManager = new DejaVuManager(getApplicationContext());
+        dejaVuManager.open();
+        if (!dejaVuManager.exist()) {
+            dejaVuManager.addDejaVu(new DejaVu());
+        }
+        dejaVuManager.close();
+        PasspointManager passpointManager = new PasspointManager(getApplicationContext());
+        passpointManager.open();
+        if (!passpointManager.exist()) {
+            passpointManager.addPasspoint(new Passpoint());
+        }
+        passpointManager.close();
+
         setContentView(R.layout.menu_accueil);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

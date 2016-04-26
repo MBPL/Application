@@ -4,20 +4,17 @@ package mbpl.graphical.passwords.sqlite;
  * Created by Matteo on 14/04/2016.
  */
 
-
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
 import mbpl.graphical.passwords.R;
 
-
 /**
  * Tester d'inserer une méthode DejaVu dans la base, supprimer etc...
  */
-public class TestDejaVuBDD extends ActionBarActivity {
+public class TestDejaVuBDD extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
