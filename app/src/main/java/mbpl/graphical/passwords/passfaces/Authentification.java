@@ -1,4 +1,4 @@
-package mbpl.graphical.passwords.dejaVu;
+package mbpl.graphical.passwords.passfaces;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,15 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by benja135 on 05/03/16.
- * Activité d'authentification de la méthode "Déjà Vu".
+ * Created by benja135 on 26/04/16.
+ * Activité d'authentification de la méthode "passfaces".
  */
 public class Authentification extends AppCompatActivity {
 
-    private final int nbIcone = 258;
-    private final int tailleIcone = 256;
-    private final int nbLigne = 6;
-    private final int nbColonne = 4;
+    private final int nbImage = 20;
+    private final int tailleImage = 256;
+    private final int nbLigne = 3;
+    private final int nbColonne = 3;
 
     private List<Integer> trueMotDePasse = new ArrayList<>(); // TODO récup le mdp dans la BDD
     private List<Integer> inputMotDePasse = new ArrayList<>();
@@ -34,7 +34,7 @@ public class Authentification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Mot de passe de 4 en dur pour les tests (icônes Adobe reader)
+        // Mot de passe de 4 en dur pour les tests
         trueMotDePasse.add(7);
         trueMotDePasse.add(7);
         trueMotDePasse.add(7);
@@ -50,19 +50,19 @@ public class Authentification extends AppCompatActivity {
     }
 
     /**
-     * Affiche des icônes aléatoirement et ajoute un listener sur chacun d'entre eux.
-     * iconToBeDisplayed sera forcément affiché (à une position aléatoire).
+     * Affiche des images aléatoirement et ajoute un listener sur chacune d'entre eux.
+     * imageToBeDisplayed sera forcément affiché (à une position aléatoire).
      *
-     * @param iconToBeDisplayed icône à afficher (pour nous le caractére du mdp courant)
+     * @param imageToBeDisplayed image à afficher (pour nous le caractére du mdp courant)
      */
-    private void drawAndSetListeners(int iconToBeDisplayed) {
+    private void drawAndSetListeners(int imageToBeDisplayed) {
 
-        boolean[] iconAlreadyDisplayed = new boolean[nbIcone];
-        for (int i = 0; i < nbIcone; i++) {
-            iconAlreadyDisplayed[i] = false;
+        boolean[] imageAlreadyDisplayed = new boolean[nbImage];
+        for (int i = 0; i < nbImage; i++) {
+            imageAlreadyDisplayed[i] = false;
         }
 
-        int positionIconToBeDisplayed = randomInto(0, nbLigne * nbColonne - 1);
+        int positionImageToBeDisplayed = randomInto(0, nbLigne * nbColonne - 1);
 
         GridLayout gridLayout = new GridLayout(this);
 
@@ -80,30 +80,30 @@ public class Authentification extends AppCompatActivity {
                 ImageView imageView;
                 imageView = new ImageView(this);
 
-                // Crée un bitmap d'une icone piochée aléatoirement (ou pas)
-                int numIcon;
-                if ((l * nbColonne + c) == positionIconToBeDisplayed) {
-                    numIcon = trueMotDePasse.get(inputMotDePasse.size());
+                // Crée un bitmap d'une image piochée aléatoirement (ou pas)
+                int numImage;
+                if ((l * nbColonne + c) == positionImageToBeDisplayed) {
+                    numImage = trueMotDePasse.get(inputMotDePasse.size());
                 } else {
                     do {
-                        numIcon = randomInto(1, nbIcone);
-                    } while (iconAlreadyDisplayed[numIcon - 1] || numIcon == iconToBeDisplayed);
+                        numImage = randomInto(1, nbImage);
+                    } while (imageAlreadyDisplayed[numImage - 1] || numImage == imageToBeDisplayed);
                 }
-                iconAlreadyDisplayed[numIcon - 1] = true;
+                imageAlreadyDisplayed[numImage - 1] = true;
 
                 Bitmap bmp;
-                bmp = BitmapFactory.decodeResource(getResources(), getDrawableN(numIcon));
-                bmp = Bitmap.createScaledBitmap(bmp, tailleIcone, tailleIcone, true);
+                bmp = BitmapFactory.decodeResource(getResources(), getDrawableN(numImage));
+                bmp = Bitmap.createScaledBitmap(bmp, tailleImage, tailleImage, true);
 
-                // On ajoute l'icone à l'ImageView
+                // On ajoute l'image à l'ImageView
                 imageView.setImageBitmap(bmp);
 
-                // Ajoute un listener sur l'icon
-                final int finalNumIcon = numIcon;
+                // Ajoute un listener sur l'image
+                final int finalNumImage = numImage;
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        changePhase(finalNumIcon);
+                        changePhase(finalNumImage);
                     }
                 });
 
@@ -125,15 +125,15 @@ public class Authentification extends AppCompatActivity {
 
 
     /**
-     * A chaque appui sur un icone, cette méthode est appelé.
+     * A chaque appui sur une image, cette méthode est appelé.
      * Elle permet de changer de phase, c'est à dire de rappeler la méthode d'affichage
-     * avec le prochain icone du mot de passe ou de détecter la fin de la saisie et donc
+     * avec la prochaine iamge du mot de passe ou de détecter la fin de la saisie et donc
      * de retourner au menu de l'application.
      *
-     * @param selectedIcon numéro de l'icône selectionné lors de la phase
+     * @param selectedImage numéro de l'image selectionné lors de la phase
      */
-    private void changePhase(int selectedIcon) {
-        inputMotDePasse.add(selectedIcon);
+    private void changePhase(int selectedImage) {
+        inputMotDePasse.add(selectedImage);
 
         if (inputMotDePasse.size() == trueMotDePasse.size()) {
             if (inputMotDePasse.equals(trueMotDePasse)) {
@@ -169,14 +169,13 @@ public class Authentification extends AppCompatActivity {
     }
 
     /**
-     * Retourne l'icon n de res/drawable.
+     * Retourne l'image de res/drawable.
      *
-     * @param n numéro de l'icône à récupérer
+     * @param n numéro de l'image à récupérer
      * @return id identifiant de l'icône
      */
     private int getDrawableN(int n) {
-        return getResources().getIdentifier("icon"
-                + tailleIcone + "x" + tailleIcone + "_" + n, "drawable", getPackageName());
+        return getResources().getIdentifier("visage_" + n, "drawable", getPackageName());
     }
 
 

@@ -9,27 +9,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name="mbpl.graphical.passwords.passPoints.ChoixPoints"
-            android:label="PassPoints : Choix des points"
-            android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
 
-        <activity
-            android:name="mbpl.graphical.passwords.passPoints.Deverouillage"
-            android:label="PassPoints : Deverouillage"
-            android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-        <activity
-            android:name="mbpl.graphical.passwords.passPoints.ChoixImage"
-            android:label="PassPoints : Choix de l&apos;image"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
+        <!-- Menu -->
         <activity
             android:name="mbpl.graphical.passwords.Accueil"
             android:label="@string/app_name"
@@ -37,11 +18,31 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Passpoints -->
+        <activity
+            android:name="mbpl.graphical.passwords.passPoints.ChoixPoints"
+            android:label="PassPoints : Choix des points"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="mbpl.graphical.passwords.passPoints.Deverouillage"
+            android:label="PassPoints : Deverouillage"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="mbpl.graphical.passwords.passPoints.ChoixImage"
+            android:label="PassPoints : Choix de l&apos;image"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <!-- Déjà Vu -->
         <activity android:name="mbpl.graphical.passwords.dejaVu.Accueil" android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="mbpl.graphical.passwords.dejaVu.Authentification" android:screenOrientation="portrait"
@@ -51,6 +52,11 @@
         <activity android:name="mbpl.graphical.passwords.dejaVu.Configuration" android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <!-- Passfaces -->
+        <activity android:name="mbpl.graphical.passwords.passfaces.Authentification" android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="mbpl.graphical.passwords.passfaces.Creation" android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 

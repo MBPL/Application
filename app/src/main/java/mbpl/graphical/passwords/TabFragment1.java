@@ -62,20 +62,28 @@ public class TabFragment1 extends Fragment {
 
 
         String descPasspoints = "- Choisir une image.\n- Choisir au moins un point à repérer sur cette image.\n- Faire 'Suivant'.\n- Retrouver ces points.";
+        String descDejaVu = "- Choisir une suite d'images.\n" +
+                "- Appuyer sur 'Valider'.\n" +
+                "- Cliquer sur les images dans l'ordre pour vous authentifier";
+        String descPassfaces = "- Choisir une suite d'images.\n" +
+                "- Appuyer sur 'Valider'.\n" +
+                "- Cliquer sur les images dans l'ordre pour vous authentifier";
 
         // TODO faire les images en bandeau
-        tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, Color.YELLOW, 1, 0, 0));
-        tab.add(new TypeAuthentification("Déjà Vu", "icon96x96_2", "desc deja vu", Color.GREEN, 2, 0, 0));
-        tab.add(new TypeAuthentification("mdp3", "icon96x96_3", "d", Color.BLUE, 3, 0, 0));
-        tab.add(new TypeAuthentification("mdp4", "icon96x96_4", "d", Color.MAGENTA, 4, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
+        tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, 1, 0, 0));
+        tab.add(new TypeAuthentification("Déjà Vu", "icon96x96_2", descDejaVu, 2, 0, 0));
+        tab.add(new TypeAuthentification("Passfaces", "icon96x96_3", descPassfaces, 3, 0, 0));
+        tab.add(new TypeAuthentification("mdp4", "icon96x96_4", "d", 4, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
 
 
         Point size = new Point();
@@ -109,6 +117,7 @@ public class TabFragment1 extends Fragment {
             param.columnSpec = GridLayout.spec(c);
             param.rowSpec = GridLayout.spec(l);
             iv.setLayoutParams(param);
+
             iv.setOnClickListener(new ImageView.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -234,6 +243,9 @@ public class TabFragment1 extends Fragment {
                                 break;
                             case "Déjà Vu":
                                 appel = new Intent(getActivity(), mbpl.graphical.passwords.dejaVu.Accueil.class);
+                                break;
+                            case "Passfaces":
+                                appel = new Intent(getActivity(), mbpl.graphical.passwords.passfaces.Authentification.class);
                                 break;
                             default:
                                 appel = new Intent(getActivity(), ChoixImage.class);
