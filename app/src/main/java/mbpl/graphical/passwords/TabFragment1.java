@@ -244,7 +244,7 @@ public class TabFragment1 extends Fragment {
                                 appel = new Intent(getActivity(), mbpl.graphical.passwords.dejaVu.Accueil.class);
                                 break;
                             case "Passfaces":
-                                appel = new Intent(getActivity(), mbpl.graphical.passwords.passfaces.Authentification.class);
+                                appel = new Intent(getActivity(), mbpl.graphical.passwords.passfaces.Creation.class);
                                 break;
                             default:
                                 appel = new Intent(getActivity(), ChoixImage.class);
