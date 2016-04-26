@@ -15,6 +15,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import mbpl.graphical.passwords.sqlite.Passfaces;
+import mbpl.graphical.passwords.sqlite.PassfacesManager;
+
+import static mbpl.graphical.passwords.utils.MdpParser.stringArrayToIntArray;
+
 /**
  * Created by benja135 on 26/04/16.
  * Activité d'authentification de la méthode "passfaces".
@@ -26,7 +31,7 @@ public class Authentification extends AppCompatActivity {
     private final int nbLigne = 3;
     private final int nbColonne = 3;
 
-    private List<Integer> trueMotDePasse = new ArrayList<>(); // TODO récup le mdp dans la BDD
+    private List<Integer> trueMotDePasse;
     private List<Integer> inputMotDePasse = new ArrayList<>();
     private long time;
 
@@ -34,11 +39,11 @@ public class Authentification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Mot de passe de 4 en dur pour les tests
-        trueMotDePasse.add(7);
-        trueMotDePasse.add(7);
-        trueMotDePasse.add(7);
-        trueMotDePasse.add(7);
+        PassfacesManager passfacesBDD = new PassfacesManager(getApplicationContext());
+        passfacesBDD.open();
+        Passfaces passfaces = passfacesBDD.getPassfaces();
+        trueMotDePasse = stringArrayToIntArray(passfaces.getMdp());
+        passfacesBDD.close();
     }
 
     @Override
@@ -136,18 +141,20 @@ public class Authentification extends AppCompatActivity {
         inputMotDePasse.add(selectedImage);
 
         if (inputMotDePasse.size() == trueMotDePasse.size()) {
+            PassfacesManager passfacesManager = new PassfacesManager(getApplicationContext());
+            passfacesManager.open();
+            Passfaces passfaces = passfacesManager.getPassfaces();
             if (inputMotDePasse.equals(trueMotDePasse)) {
                 time = System.currentTimeMillis() - time; // temps de l'authentification
                 inputMotDePasse.clear();
                 Toast.makeText(Authentification.this, "Authentification OK !", Toast.LENGTH_LONG).show();
                 Intent accueil = new Intent(Authentification.this, mbpl.graphical.passwords.Accueil.class);
-                /* TODO revenir au menu en passant les statistiques du log (temps, réussi ou échoué)
-                Bundle bundle = new Bundle();
-                bundle.putInt("temps", (int) time/1000);
-                bundle.putBoolean("reussi", true);
-                authentification.putExtras(bundle);*/
+                passfacesManager.addTentativeReussie(passfaces, (float) time/1000);
+                passfacesManager.close();
                 startActivity(accueil);
             } else {
+                passfacesManager.addTentativeEchouee(passfaces);
+                passfacesManager.close();
                 Toast.makeText(Authentification.this, "Authentification échoué", Toast.LENGTH_LONG).show();
                 inputMotDePasse.clear();
                 drawAndSetListeners(trueMotDePasse.get(inputMotDePasse.size()));

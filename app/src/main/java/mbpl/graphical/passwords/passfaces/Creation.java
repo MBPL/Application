@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.customProgressBar.CustomProgress;
+import mbpl.graphical.passwords.sqlite.Passfaces;
+import mbpl.graphical.passwords.sqlite.PassfacesManager;
 
 /**
  * Created by benja135 on 26/04/16.
@@ -122,7 +124,11 @@ public class Creation extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (pass.size() > 0) {
-                        // TODO rentrer le mdp dans la base
+                        PassfacesManager passfacesManager = new PassfacesManager(getApplicationContext());
+                        passfacesManager.open();
+                        Passfaces passfaces = passfacesManager.getPassfaces();
+                        passfacesManager.setPassword(passfaces, pass.toString());
+                        passfacesManager.close();
                         Intent authentification = new Intent(Creation.this, Authentification.class);
                         startActivity(authentification);
                     }
@@ -159,7 +165,7 @@ public class Creation extends AppCompatActivity {
             // Crée un bitmap de l'image i
             Bitmap bmp;
             bmp = BitmapFactory.decodeResource(getResources(), getDrawableN(i + 1));
-            bmp = Bitmap.createScaledBitmap(bmp, 96, 96, true); // les images prennent moins de place en mémoire après cette méthode
+            bmp = Bitmap.createScaledBitmap(bmp, tailleImage, tailleImage, true);
 
             // On ajoute l'image à l'ImageView
             iv.setImageBitmap(bmp);

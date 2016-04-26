@@ -5,8 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -19,6 +17,8 @@ import java.util.List;
 
 import mbpl.graphical.passwords.sqlite.DejaVu;
 import mbpl.graphical.passwords.sqlite.DejaVuManager;
+
+import static mbpl.graphical.passwords.utils.MdpParser.stringArrayToIntArray;
 
 /**
  * Created by benja135 on 05/03/16.
@@ -50,7 +50,7 @@ public class Authentification extends AppCompatActivity {
         } else if (nbIconeParPhase == 96) {
             nbLigne = 12;
             nbColonne = 8;
-            tailleIcone = 96;;
+            tailleIcone = 96;
         }
         dejaVuBDD.close();
     }
@@ -210,26 +210,4 @@ public class Authentification extends AppCompatActivity {
         return result;
     }
 
-    /**
-     * Convertie une chaine de caractères en liste d'entier.
-     * La chaine doit être de la forme ArrayList.toString().
-     * http://stackoverflow.com/questions/7646392/convert-string-to-int-array-in-java
-     *
-     * @param pass chaine de forme ArrayList.toString().
-     * @return liste d'entier
-     */
-    public List<Integer> stringArrayToIntArray(String pass) {
-
-        String[] items = pass.replaceAll("\\[", "").replaceAll(" ", "").replaceAll("\\]", "").split(",");
-
-        List results = new ArrayList<>();
-
-        for (int i = 0; i < items.length; i++) {
-            try {
-                results.add(Integer.parseInt(items[i]));
-            } catch (NumberFormatException nfe) {
-            }
-        }
-        return results;
-    }
 }
