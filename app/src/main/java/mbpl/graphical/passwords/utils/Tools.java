@@ -1,12 +1,15 @@
 package mbpl.graphical.passwords.utils;
 
+import android.content.res.Resources;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by benja135 on 26/04/16.
+ * Classe utilitaires.
  */
-public class MdpParser {
+public abstract class Tools {
 
     /**
      * Convertie une chaine de caractères en liste d'entier.
@@ -29,6 +32,33 @@ public class MdpParser {
             }
         }
         return results;
+    }
+
+
+    /**
+     * Retourne un nombre aléatoire entre min et max.
+     *
+     * @param min minimum de l'intervalle
+     * @param max maximum de l'intervalle
+     * @return entier aléatoire
+     */
+    public static int randomInto(int min, int max) {
+        return (int) Math.round(Math.random() * (max - min)) + min;
+    }
+
+
+    /**
+     * Retourne la hauteur de la barre de notification
+     * @param resources getResources()
+     * @return taille de la barre de notification
+     */
+    public static int getStatusBarHeight(Resources resources) {
+        int result = 0;
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.sqlite.DejaVu;
-import mbpl.graphical.passwords.sqlite.DejaVuManager;
+import mbpl.graphical.passwords.sqlite.MethodeManager;
 
 /**
  * Created by benja135 on 06/03/16.
@@ -29,10 +29,10 @@ public class Configuration extends Activity {
 
         // On récupére les informations dans la BDD
 
-        final DejaVuManager dejaVuBDD = new DejaVuManager(getApplicationContext());
-        dejaVuBDD.open();
-        final DejaVu dejaVu = dejaVuBDD.getDejaVu();
-        dejaVuBDD.close();
+        final MethodeManager methodeManager = new MethodeManager(getApplicationContext());
+        methodeManager.open();
+        final DejaVu dejaVu = (DejaVu) methodeManager.getMethode(new DejaVu());
+        methodeManager.close();
 
 
         // Gestion du spinner
@@ -50,7 +50,7 @@ public class Configuration extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        int myValue = dejaVu.getNbIcone();
+        int myValue = dejaVu.getNbImage();
         final int spinnerPosition = adapter.getPosition(myValue);
         spinner.setSelection(spinnerPosition);
 
@@ -83,9 +83,9 @@ public class Configuration extends Activity {
 
             @Override
             public void onClick(View v) {
-                dejaVuBDD.open();
-                dejaVuBDD.updateConfiguration(dejaVu, Integer.parseInt(spinner.getSelectedItem().toString()), checkBox.isChecked());
-                dejaVuBDD.close();
+                methodeManager.open();
+                methodeManager.updateConfiguration(dejaVu, Integer.parseInt(spinner.getSelectedItem().toString()), checkBox.isChecked());
+                methodeManager.close();
                 Intent creation = new Intent(Configuration.this, Accueil.class);
                 startActivity(creation);
             }

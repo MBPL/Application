@@ -7,12 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by Matteo on 07/04/2016.
+ * Cette classe permet de créer la base de données
+ * ainsi que la table méthode qui contiendra toutes les informations requises.
  */
-
-/**
- * Cette classe permet de créer la base de données ainsi que la table méthode qui contiendra toutes les informations requises.
- */
-public class MySQLiteDatabase extends SQLiteOpenHelper{
+public class MySQLiteDatabase extends SQLiteOpenHelper {
 
     private static final String METHODE = "table_methode";
     private static final String COL_ID = "methode_id";
@@ -35,7 +33,7 @@ public class MySQLiteDatabase extends SQLiteOpenHelper{
     private static final String COL_TEMPSMOYEN = "temps_auth_moyen";
     private static final String COL_ESPACE_MDP = "espaceMdp";
     private static final String COL_MDP = "mdp";
-    private static final String COL_ICONE = "icone";
+    private static final String COL_NBIMAGE = "nb_image";
     private static final String COL_DOUBLON = "doublon";
 
 
@@ -65,30 +63,28 @@ public class MySQLiteDatabase extends SQLiteOpenHelper{
             + COL_TEMPSMOYEN + " FLOAT DEFAULT 0, "
             + COL_ESPACE_MDP + " INTEGER NOT NULL, "
             + COL_MDP + " TEXT, "
-            + COL_ICONE + " INTEGER, "
+            + COL_NBIMAGE + " INTEGER, "
             + COL_DOUBLON + " INTEGER);";
-
 
 
     /**
      * Cette méthode est appelée lors de la toute première création de la base
-     * de données.
+     * de données. On crée la table table_contacts dans la BDD.
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // on crée la table table_contacts dans la BDD
         db.execSQL(CREATE_TABLE_METHODES);
     }
 
     /**
-     * Ici c'est quand on mets à jour la base de donnée.
+     * On mets à jour la base de donnée.
+     *
      * @param db
      * @param oldVersion
      * @param newVersion
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // on supprime la table table_contacts de la BDD et on recrée la BDD
         db.execSQL("DROP TABLE " + METHODE + ";");
         onCreate(db);
     }
