@@ -146,13 +146,13 @@ public class DejaVuManager {
 
     /**
      * Retourne la méthode DejaVu depuis la bdd.
-     * @param dejavue
      * @return la méthode
      */
-    public DejaVu getDejaVu(DejaVu dejavue) {
+    public DejaVu getDejaVu() {
 
-        int id = dejavue.getId();
         DejaVu djv = new DejaVu();
+        int id = djv.getId();
+
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + "=" + id, null);
 

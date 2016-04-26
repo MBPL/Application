@@ -135,13 +135,13 @@ public class PasspointManager {
 
     /**
      * Retourne la méthode Passpoint depuis la bdd.
-     * @param passpoint
      * @return la méthode
      */
-    public Passpoint getPasspoint(Passpoint passpoint) {
+    public Passpoint getPasspoint() {
 
-        int id = passpoint.getId();
         Passpoint pt = new Passpoint();
+        int id = pt.getId();
+
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + "=" + id, null);
 
@@ -166,7 +166,7 @@ public class PasspointManager {
      * @param auth_moyen
      * @return le nombre de lignes updated
      */
-    public int updateDejaVu(Passpoint pt, int tentative_echouee, int tentative_reussi, float auth_moyen) {
+    public int updatePasspoint(Passpoint pt, int tentative_echouee, int tentative_reussi, float auth_moyen) {
         int id = pt.getId();
         ContentValues values = new ContentValues();
         values.put(COL_TENTATIVEECHOUEE, tentative_echouee);

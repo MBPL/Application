@@ -47,7 +47,7 @@ public class TestDejaVuBDD extends ActionBarActivity {
         if (numeroEnregistrement != -1) {
 
             // Récupération de la méthode DejaVu
-            DejaVu dejaVuFromBdd1 = dejaVuManager.getDejaVu(methodeDejaVu);
+            DejaVu dejaVuFromBdd1 = dejaVuManager.getDejaVu();
 
             //test si exist dans BD
             flagBD = dejaVuManager.exist();
@@ -71,7 +71,7 @@ public class TestDejaVuBDD extends ActionBarActivity {
                 dejaVuManager.updateDejaVu(dejaVuFromBdd1, 2, 2, 3f);
 
                 //Re - Récupération
-                dejaVuFromBdd1 = dejaVuManager.getDejaVu(methodeDejaVu);
+                dejaVuFromBdd1 = dejaVuManager.getDejaVu();
 
                 //vérif de la modification
 
@@ -86,7 +86,7 @@ public class TestDejaVuBDD extends ActionBarActivity {
                 dejaVuManager.setPassword(dejaVuFromBdd1, "coepDeLespace");
 
                 //Re - Récupération
-                dejaVuFromBdd1 = dejaVuManager.getDejaVu(methodeDejaVu);
+                dejaVuFromBdd1 = dejaVuManager.getDejaVu();
 
                 //test si mot de passe par défault
                 flagPassword = dejaVuManager.defaultPassword(dejaVuFromBdd1);
