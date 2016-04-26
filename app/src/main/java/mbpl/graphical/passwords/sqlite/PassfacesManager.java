@@ -90,7 +90,7 @@ public class PassfacesManager {
      * @param pf
      * @return retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
      */
-    public long addDejaVu(Passfaces pf) {
+    public long addPassfaces(Passfaces pf) {
 
         ContentValues values = new ContentValues();
         values.put(COL_ID, pf.getId());
@@ -127,7 +127,7 @@ public class PassfacesManager {
      * @param pf
      * @return le nombre de lignes supprimées
      */
-    public int removeDejaVu(Passfaces pf) {
+    public int removePassfaces(Passfaces pf) {
         long id = pf.getId();
         return db.delete(TABLE_NAME, COL_ID + " = " + id, null);
     }
@@ -170,7 +170,7 @@ public class PassfacesManager {
      * @param auth_moyen
      * @return le nombre de lignes updated
      */
-    public int setStatsDejaVu(Passfaces pf, int tentative_echouee, int tentative_reussi, float auth_moyen) {
+    public int setStatsPassfaces(Passfaces pf, int tentative_echouee, int tentative_reussi, float auth_moyen) {
         int id = pf.getId();
         ContentValues values = new ContentValues();
         values.put(COL_TENTATIVEECHOUEE, tentative_echouee);
