@@ -1,4 +1,4 @@
-package mbpl.graphical.passwords.dejaVu;
+package mbpl.graphical.passwords.passfaces;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,19 +24,14 @@ import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.customProgressBar.CustomProgress;
 
 /**
- * Created by benja135 on 05/03/16.
- * - affiche tout les icônes de maniére ordonné dans une grille
- * - possibilité de scroller
- * - un clique sur une icône l'ajoute à la liste des icônes choisies
- * - suppression des icônes de la liste possible
- * - passSize entre 1 et 12
- * - chargement avec un progress circle !
+ * Created by benja135 on 26/04/16.
+ * Activité de création de la méthode "passfaces".
  */
 public class Creation extends AppCompatActivity {
 
-    private final int nbIcone = 258;
-    private final int tailleIcone = 96;
-    private final int nbColonne = 10;
+    private final int nbImage = 20;
+    private final int tailleImage = 96;
+    private final int nbColonne = 5;
     private final int minPassSize = 1;
     private final int maxPassSize = 12;
 
@@ -82,7 +77,7 @@ public class Creation extends AppCompatActivity {
          * Le coeur du chargement : filledGridWithListeners():
          *
          * @param params rien
-         * @return gridLayout "chargé", càd avec les icônes et les listeners.
+         * @return gridLayout "chargé", càd avec les images et les listeners.
          */
         @Override
         protected GridLayout doInBackground(Void... params) {
@@ -98,7 +93,7 @@ public class Creation extends AppCompatActivity {
          */
         @Override
         protected void onPostExecute(GridLayout gridLayout) {
-            setContentView(R.layout.deja_vu_creation);
+            setContentView(R.layout.passfaces_creation);
             ScrollView scrollView = (ScrollView) findViewById(R.id.scrollview);
             scrollView.addView(gridLayout);
 
@@ -141,41 +136,41 @@ public class Creation extends AppCompatActivity {
 
 
     /**
-     * Retourne un gridLayout rempli d'icônes avec les listeners.
+     * Retourne un gridLayout rempli d'images avec les listeners.
      */
     private GridLayout filledGridWithListeners() {
 
-        GridLayout gridIcons = new GridLayout(this);
+        GridLayout gridImage = new GridLayout(this);
 
         // On récup la largeur de l'écran
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
         int screenWidth = size.x;
 
-        int nbLigne = (int) Math.ceil((float) nbIcone / (float) nbColonne);
-        gridIcons.setColumnCount(nbColonne);
-        gridIcons.setRowCount(nbLigne);
+        int nbLigne = (int) Math.ceil((float) nbImage / (float) nbColonne);
+        gridImage.setColumnCount(nbColonne);
+        gridImage.setRowCount(nbLigne);
 
 
-        for (int i = 0; i < nbIcone; i++) {
+        for (int i = 0; i < nbImage; i++) {
             ImageView iv;
             iv = new ImageView(this);
 
-            // Crée un bitmap de l'icone i
+            // Crée un bitmap de l'image i
             Bitmap bmp;
             bmp = BitmapFactory.decodeResource(getResources(), getDrawableN(i + 1));
-            bmp = Bitmap.createScaledBitmap(bmp, 96, 96, true); // les icones prennent moins de place en mémoire après cette méthode
+            bmp = Bitmap.createScaledBitmap(bmp, 96, 96, true); // les images prennent moins de place en mémoire après cette méthode
 
-            // On ajoute l'icone à l'ImageView
+            // On ajoute l'image à l'ImageView
             iv.setImageBitmap(bmp);
 
-            // Ajoute un listener sur l'icon
-            final int numIcone = i + 1;
+            // Ajoute un listener sur l'image
+            final int numImage = i + 1;
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (pass.size() < maxPassSize) {
-                        pass.add(numIcone);
+                        pass.add(numImage);
                         drawGridToolbar();
                     }
                 }
@@ -190,15 +185,15 @@ public class Creation extends AppCompatActivity {
             param.columnSpec = GridLayout.spec(i % nbColonne);
             param.rowSpec = GridLayout.spec(i / nbColonne);
             iv.setLayoutParams(param);
-            gridIcons.addView(iv);
+            gridImage.addView(iv);
         }
-        return gridIcons;
+        return gridImage;
     }
 
 
     /**
      * Affiche la toolbar contenant les deux boutons de controle et
-     * les icônes choisi pour le mot de passe.
+     * les images choisi pour le mot de passe.
      */
     private void drawGridToolbar() {
 
@@ -270,14 +265,13 @@ public class Creation extends AppCompatActivity {
 
 
     /**
-     * Retourne l'icon n de res/drawable.
+     * Retourne l'image n de res/drawable.
      *
-     * @param n numéro de l'icône à récupérer
-     * @return id identifiant de l'icône
+     * @param n numéro de l'image à récupérer
+     * @return id identifiant de l'image
      */
     private int getDrawableN(int n) {
-        return getResources().getIdentifier("icon"
-                + tailleIcone + "x" + tailleIcone + "_" + n, "drawable", getPackageName());
+        return getResources().getIdentifier("visage_" + n, "drawable", getPackageName());
     }
 
 
