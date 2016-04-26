@@ -75,7 +75,6 @@ public class DejaVuManager {
      * On ouvre la table en lecture/écriture
      */
     public void open() {
-        //o
         db = maBaseSQLite.getWritableDatabase();
     }
 
@@ -146,13 +145,12 @@ public class DejaVuManager {
 
     /**
      * Retourne la méthode DejaVu depuis la bdd.
-     * @param dejavue
      * @return la méthode
      */
-    public DejaVu getDejaVu(DejaVu dejavue) {
+    public DejaVu getDejaVu() {
 
-        int id = dejavue.getId();
         DejaVu djv = new DejaVu();
+        int id = djv.getId();
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + "=" + id, null);
 
@@ -196,7 +194,7 @@ public class DejaVuManager {
      * @param doublon
      * @return
      */
-    public int updateConfiguration(DejaVu djv, int nbIcone, int doublon){
+    public int updateConfiguration(DejaVu djv, int nbIcone, boolean doublon){
         int id = djv.getId();
         ContentValues values = new ContentValues();
         values.put(COL_ICONE, nbIcone);
@@ -252,12 +250,8 @@ public class DejaVuManager {
      * @return
      */
     public boolean doublon(DejaVu djv){
-        if(djv.getDoublon() > 0){
-            return true;
-        }
-        else return false;
+        return djv.getDoublon();
     }
-
 
 
     public Cursor getMethode() {

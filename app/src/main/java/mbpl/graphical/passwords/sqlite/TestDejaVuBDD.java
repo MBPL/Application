@@ -4,20 +4,17 @@ package mbpl.graphical.passwords.sqlite;
  * Created by Matteo on 14/04/2016.
  */
 
-
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
 import mbpl.graphical.passwords.R;
 
-
 /**
  * Tester d'inserer une méthode DejaVu dans la base, supprimer etc...
  */
-public class TestDejaVuBDD extends ActionBarActivity {
+public class TestDejaVuBDD extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +44,7 @@ public class TestDejaVuBDD extends ActionBarActivity {
         if (numeroEnregistrement != -1) {
 
             // Récupération de la méthode DejaVu
-            DejaVu dejaVuFromBdd1 = dejaVuManager.getDejaVu(methodeDejaVu);
+            DejaVu dejaVuFromBdd1 = dejaVuManager.getDejaVu();
 
             //test si exist dans BD
             flagBD = dejaVuManager.exist();
@@ -71,7 +68,7 @@ public class TestDejaVuBDD extends ActionBarActivity {
                 dejaVuManager.updateDejaVu(dejaVuFromBdd1, 2, 2, 3f);
 
                 //Re - Récupération
-                dejaVuFromBdd1 = dejaVuManager.getDejaVu(methodeDejaVu);
+                dejaVuFromBdd1 = dejaVuManager.getDejaVu();
 
                 //vérif de la modification
 
@@ -86,7 +83,7 @@ public class TestDejaVuBDD extends ActionBarActivity {
                 dejaVuManager.setPassword(dejaVuFromBdd1, "coepDeLespace");
 
                 //Re - Récupération
-                dejaVuFromBdd1 = dejaVuManager.getDejaVu(methodeDejaVu);
+                dejaVuFromBdd1 = dejaVuManager.getDejaVu();
 
                 //test si mot de passe par défault
                 flagPassword = dejaVuManager.defaultPassword(dejaVuFromBdd1);

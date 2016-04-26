@@ -166,7 +166,7 @@ public class PasspointManager {
      * @param auth_moyen
      * @return le nombre de lignes updated
      */
-    public int updateDejaVu(Passpoint pt, int tentative_echouee, int tentative_reussi, float auth_moyen) {
+    public int updatePasspoint(Passpoint pt, int tentative_echouee, int tentative_reussi, float auth_moyen) {
         int id = pt.getId();
         ContentValues values = new ContentValues();
         values.put(COL_TENTATIVEECHOUEE, tentative_echouee);

@@ -154,8 +154,8 @@ public class DejaVu {
         this.nbIcone = nbIcone;
     }
 
-    public int getDoublon() {
-        return doublon;
+    public boolean getDoublon() {
+        return (doublon == 1);
     }
 
     public void setDoublon(int doublon) {
