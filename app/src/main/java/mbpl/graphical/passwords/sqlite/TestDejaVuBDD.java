@@ -15,7 +15,7 @@ import mbpl.graphical.passwords.R;
 
 
 /**
- * Tester d'inserer une méthode DejaVu dans la base, supprimer etc..
+ * Tester d'inserer une méthode DejaVu dans la base, supprimer etc...
  */
 public class TestDejaVuBDD extends ActionBarActivity {
 

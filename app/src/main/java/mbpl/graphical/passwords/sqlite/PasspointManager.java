@@ -10,7 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * Permet d'intéragir avec la base de donnée  (manipuler les données)
+ * Permet d'intéragir avec la base de donnée  (manipuler les données).
  */
 public class PasspointManager {
 

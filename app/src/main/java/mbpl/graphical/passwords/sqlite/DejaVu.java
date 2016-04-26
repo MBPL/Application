@@ -5,7 +5,7 @@ package mbpl.graphical.passwords.sqlite;
  */
 
 /**
- * Methode DejaVu
+ * Methode DejaVu.
  */
 public class DejaVu {
 

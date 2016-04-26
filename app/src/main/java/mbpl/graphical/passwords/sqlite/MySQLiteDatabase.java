@@ -81,7 +81,7 @@ public class MySQLiteDatabase extends SQLiteOpenHelper{
     }
 
     /**
-     * Ici c'est quand on mets à jour la base de donnée
+     * Ici c'est quand on mets à jour la base de donnée.
      * @param db
      * @param oldVersion
      * @param newVersion
