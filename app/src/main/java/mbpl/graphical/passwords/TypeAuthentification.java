@@ -16,7 +16,7 @@ public class TypeAuthentification {
     int security;
     int utilisability;
 
-    public TypeAuthentification(String nom, String image, String desc, int color, int numeroID, int utilisability, int security) {
+    public TypeAuthentification(String nom, String image, String desc, int numeroID, int utilisability, int security) {
         this.nom = nom;
         this.image = image;
         this.desc = desc;
