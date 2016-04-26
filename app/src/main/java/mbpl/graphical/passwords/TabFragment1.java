@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,50 +18,65 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import mbpl.graphical.passwords.customList.CustomList;
+import mbpl.graphical.passwords.customProgressBar.CustomProgress;
 import mbpl.graphical.passwords.passPoints.ChoixImage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TabFragment1 extends Fragment {
 
     View rootView;
-    ScrollView myScrollView_tab1;
-    GridLayout myLayout_tab1;
+    //ScrollView myScrollView_tab1;
+    //GridLayout myLayout_tab1;
     ArrayList<TypeAuthentification> tab = new ArrayList<TypeAuthentification>();
     Bitmap bmp;
     Bitmap bmp2;
-    ImageView iv;
-    GridLayout.LayoutParams param;
+    //ImageView iv;
+    TextView tv;
+    private ListView mdpLV;
+    private ArrayAdapter arrayAdapter;
+    //GridLayout.LayoutParams param;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.menu_tab_fragment_1, container, false);
 
-        myScrollView_tab1 = (ScrollView) rootView.findViewById(R.id.container_scroll_view_tab1);
-        myLayout_tab1 = (GridLayout) rootView.findViewById(R.id.container_tab1);
+        //myScrollView_tab1 = (ScrollView) rootView.findViewById(R.id.container_scroll_view_tab1);
+        //myLayout_tab1 = (GridLayout) rootView.findViewById(R.id.container_tab1);
+        mdpLV = (ListView) rootView.findViewById(R.id.mdpListView);
+
+
+
 
         String descPasspoints = "- Choisir une image.\n- Choisir au moins un point à repérer sur cette image.\n- Faire 'Suivant'.\n- Retrouver ces points.";
 
         // TODO faire les images en bandeau
-        tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, 1, 0, 0));
-        tab.add(new TypeAuthentification("Déjà Vu", "icon96x96_2", "desc deja vu", 2, 0, 0));
-        tab.add(new TypeAuthentification("mdp3", "icon96x96_3", "d", 3, 0, 0));
-        tab.add(new TypeAuthentification("mdp4", "icon96x96_4", "d", 4, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, Color.YELLOW, 1, 0, 0));
+        tab.add(new TypeAuthentification("Déjà Vu", "icon96x96_2", "desc deja vu", Color.GREEN, 2, 0, 0));
+        tab.add(new TypeAuthentification("mdp3", "icon96x96_3", "d", Color.BLUE, 3, 0, 0));
+        tab.add(new TypeAuthentification("mdp4", "icon96x96_4", "d", Color.MAGENTA, 4, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
+        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", Color.YELLOW, 5, 0, 0));
+
 
         Point size = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
@@ -68,30 +84,31 @@ public class TabFragment1 extends Fragment {
         int screenHeight = size.y - getStatusBarHeight();
 
 
-        int l = 0;
+        /*int l = 0;
         int c = 0;
         for (int i = 0; i < tab.size(); i++) {
-            final int j = i;
+            final int j = i;*/
 
             //Toast.makeText(Accueil.this, "" + myLayout_tab1.getColumnCount(), Toast.LENGTH_SHORT).show();
 
-            iv = new ImageView(getActivity());
-            bmp = decodeSampledBitmapFromResource(getResources(), getID_MDP(i, tab.get(i)), 400, 400);
+
+            /*bmp = decodeSampledBitmapFromResource(getResources(), getID_MDP(i, tab.get(i)), 400, 400);
             bmp2 = Bitmap.createScaledBitmap(bmp, 400, 400, true);
             if (bmp != bmp2) {
                 bmp.recycle();
             }
-            iv.setImageBitmap(bmp2);
+            iv.setImageBitmap(bmp2);*/
 
+            /*iv = new ImageView(getActivity());
+            iv.setBackgroundColor(tab.get(j).getColor());
             param = new GridLayout.LayoutParams();
-            param.height = 250;
-            param.width = screenWidth / 2;
+            param.height = screenHeight/6;
+            param.width = screenWidth;
             param.setMargins(0, 0, 0, 0);
             param.setGravity(Gravity.CENTER);
             param.columnSpec = GridLayout.spec(c);
             param.rowSpec = GridLayout.spec(l);
             iv.setLayoutParams(param);
-
             iv.setOnClickListener(new ImageView.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -99,11 +116,56 @@ public class TabFragment1 extends Fragment {
 
                 }
             });
+            myLayout_tab1.addView(iv);*/
 
-            myLayout_tab1.addView(iv);
+            /*myLayout_tab1.setBackgroundColor(tab.get(j).getColor());
 
-            l++;
+
+            tv = new TextView(getActivity());
+            tv.setText(tab.get(j).getNom());
+            tv.setTextColor(Color.BLACK);
+            tv.setGravity(Gravity.LEFT);
+            tv.setTextSize(20);
+
+            myLayout_tab1.addView(tv);*/
+
+
+
+
+            /*String[] mdpNameArray = new String[tab.size()];
+            for(int m=0; m<tab.size(); m++) {
+                mdpNameArray[m] = tab.get(m).getNom();
+            }
+            arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, mdpNameArray);
+            mdpLV.setAdapter(arrayAdapter);
+            CustomProgress cp = new CustomProgress(getContext());
+            mdpLV.addView(cp);*/
+
+        ListView list;
+        final String[] listeNomsMdp = new String[tab.size()];
+        for(int m=0; m<tab.size(); m++) {
+            listeNomsMdp[m] = tab.get(m).getNom();
         }
+        int sec = 3;
+        int usa = 2;
+        CustomList adapter = new CustomList(getActivity(), listeNomsMdp, sec, usa);
+        list = (ListView) rootView.findViewById(R.id.mdpListView);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), "You Clicked at " + listeNomsMdp[+position], Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+
+
+            //l++;
+        //}
 
         return rootView;
     }

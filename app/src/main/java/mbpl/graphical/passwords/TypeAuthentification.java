@@ -1,5 +1,7 @@
 package mbpl.graphical.passwords;
 
+import android.graphics.Color;
+
 /**
  * Created by pierre on 01/03/16.
  */
@@ -9,17 +11,27 @@ public class TypeAuthentification {
     String nom;
     String image;
     String desc;
+    int color;
     int numeroID;
     int security;
     int utilisability;
 
-    public TypeAuthentification(String nom, String image, String desc, int numeroID, int utilisability, int security) {
+    public TypeAuthentification(String nom, String image, String desc, int color, int numeroID, int utilisability, int security) {
         this.nom = nom;
         this.image = image;
         this.desc = desc;
+        this.color = color;
         this.numeroID = numeroID;
         this.utilisability = utilisability;
         this.security = security;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public String getDesc() {
