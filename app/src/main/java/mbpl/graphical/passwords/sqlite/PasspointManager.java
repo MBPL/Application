@@ -135,13 +135,13 @@ public class PasspointManager {
 
     /**
      * Retourne la méthode Passpoint depuis la bdd.
-     * @param passpoint
      * @return la méthode
      */
-    public Passpoint getPasspoint(Passpoint passpoint) {
+    public Passpoint getPasspoint() {
 
-        int id = passpoint.getId();
         Passpoint pt = new Passpoint();
+        int id = pt.getId();
+
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + "=" + id, null);
 
