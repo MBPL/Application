@@ -59,6 +59,7 @@ public class Configuration extends Activity {
 
         final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBoxDoublons);
         checkBox.setChecked(dejaVu.getDoublon());
+        checkBox.setEnabled(false); // TODO fonction à développer ou supprimer
 
 
         // Gestion des boutons
