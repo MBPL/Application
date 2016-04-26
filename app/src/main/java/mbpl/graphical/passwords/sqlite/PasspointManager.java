@@ -1,19 +1,18 @@
 package mbpl.graphical.passwords.sqlite;
 
+/**
+ * Created by Matteo on 26/04/2016.
+ */
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-/**
- * Created by Matteo on 08/04/2016.
- */
-
 /**
  * Permet d'intéragir avec la base de donnée  (manipuler les données).
  */
-public class DejaVuManager {
+public class PasspointManager {
 
     private static final int VERSION_BDD = 1;
     private static final String NOM_BDD = "methode.db";
@@ -67,7 +66,7 @@ public class DejaVuManager {
     private SQLiteDatabase db;
     private MySQLiteDatabase maBaseSQLite;
 
-    public DejaVuManager(Context context) {
+    public PasspointManager(Context context) {
         maBaseSQLite = new MySQLiteDatabase(context, NOM_BDD, null, VERSION_BDD);
     }
 
@@ -87,36 +86,35 @@ public class DejaVuManager {
     }
 
     /**
-     * Ajout d'une méthode DejaVu dans la base.
+     * Ajout d'une méthode Passpoint dans la base.
      *
-     * @param djv
+     * @param pt
      * @return retourne l'id du nouvel enregistrement inséré, ou -1 en cas d'erreur
      */
-    public long addDejaVu(DejaVu djv) {
+    public long addPasspoint(Passpoint pt) {
 
         ContentValues values = new ContentValues();
-        values.put(COL_ID, djv.getId());
-        values.put(COL_NOM, djv.getNom());
-        values.put(COL_CATEGORIE, djv.getCategorie());
-        values.put(COL_BRUTEFORCE, djv.getBruteForce());
-        values.put(COL_DICTIONARYATTACK, djv.getDictionaryAttack());
-        values.put(COL_SHOULDERSURFING, djv.getShoulderSurfing());
-        values.put(COL_SMUDGEATTACK, djv.getSmudgeAttack());
-        values.put(COL_EYETRACKING, djv.getEyeTracking());
-        values.put(COL_SPYWARE, djv.getSpyWare());
-        values.put(COL_INDICESECURITE, djv.getIndiceSecurite());
-        values.put(COL_APPRENTISSAGE, djv.getApprentissage());
-        values.put(COL_MEMORISATION, djv.getMemorisation());
-        values.put(COL_TEMPS, djv.getTemps());
-        values.put(COL_SATISFACTION, djv.getSatisfaction());
-        values.put(COL_INDICEUTILISABILITE, djv.getIndiceUtilisabilite());
-        values.put(COL_TENTATIVEREUSSIE, djv.getNb_tentative_reussie());
-        values.put(COL_TENTATIVEECHOUEE, djv.getNb_tentative_echouee());
-        values.put(COL_TEMPSMOYEN, djv.getTemps_auth_moyen());
-        values.put(COL_ESPACE_MDP, djv.getEspaceMdp());
-        values.put(COL_MDP, djv.getMdp());
-        values.put(COL_ICONE, djv.getNbIcone());
-        values.put(COL_DOUBLON, djv.getDoublon());
+        values.put(COL_ID, pt.getId());
+        values.put(COL_NOM, pt.getNom());
+        values.put(COL_CATEGORIE, pt.getCategorie());
+        values.put(COL_BRUTEFORCE, pt.getBruteForce());
+        values.put(COL_DICTIONARYATTACK, pt.getDictionaryAttack());
+        values.put(COL_SHOULDERSURFING, pt.getShoulderSurfing());
+        values.put(COL_SMUDGEATTACK, pt.getSmudgeAttack());
+        values.put(COL_EYETRACKING, pt.getEyeTracking());
+        values.put(COL_SPYWARE, pt.getSpyWare());
+        values.put(COL_INDICESECURITE, pt.getIndiceSecurite());
+        values.put(COL_APPRENTISSAGE, pt.getApprentissage());
+        values.put(COL_MEMORISATION, pt.getMemorisation());
+        values.put(COL_TEMPS, pt.getTemps());
+        values.put(COL_SATISFACTION, pt.getSatisfaction());
+        values.put(COL_INDICEUTILISABILITE, pt.getIndiceUtilisabilite());
+        values.put(COL_TENTATIVEREUSSIE, pt.getNb_tentative_reussie());
+        values.put(COL_TENTATIVEECHOUEE, pt.getNb_tentative_echouee());
+        values.put(COL_TEMPSMOYEN, pt.getTemps_auth_moyen());
+        values.put(COL_ESPACE_MDP, pt.getEspaceMdp());
+        values.put(COL_MDP, pt.getMdp());
+
 
         return db.insertWithOnConflict(TABLE_NAME, null,
                 values, SQLiteDatabase.CONFLICT_FAIL);
@@ -125,62 +123,51 @@ public class DejaVuManager {
 
     /**
      * Supprime la méthode de la base de donnée
-     * @param djv
+     * @param pt
      * @return le nombre de lignes supprimées
      */
-    public int removeDejaVu(DejaVu djv){
-        long id = djv.getId();
+    public int removePasspoint(Passpoint pt){
+        long id = pt.getId();
         return db.delete(TABLE_NAME, COL_ID + " = " + id, null);
     }
 
-    /**
-     * Utiliser de préférence la méthode prenant la méthode DejaVu
-     *
-     * @param id
-     * @return le nombre de lignes supprimées
-     */
-    public int removeDejaVu(int id){
 
-        return db.delete(TABLE_NAME, COL_ID + " = " + id, null);
-    }
 
     /**
-     * Retourne la méthode DejaVu depuis la bdd.
-     * @param dejavue
+     * Retourne la méthode Passpoint depuis la bdd.
+     * @param passpoint
      * @return la méthode
      */
-    public DejaVu getDejaVu(DejaVu dejavue) {
+    public Passpoint getPasspoint(Passpoint passpoint) {
 
-        int id = dejavue.getId();
-        DejaVu djv = new DejaVu();
+        int id = passpoint.getId();
+        Passpoint pt = new Passpoint();
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + "=" + id, null);
 
         if (c.moveToFirst()) {
-            djv.setNb_tentative_echouee(c.getInt(NUM_COL_TENTATIVEECHOUEE));
-            djv.setNb_tentative_reussie(c.getInt(NUM_COL_TENTATIVEREUSSIE));
-            djv.setTemps_auth_moyen(c.getFloat(NUM_COL_TEMPSMOYEN));
-            djv.setMdp(c.getString(NUM_COL_MDP));
-            djv.setNbIcone(c.getInt(NUM_COL_ICONE));
-            djv.setDoublon(c.getInt(NUM_COL_DOUBLON));
+            pt.setNb_tentative_echouee(c.getInt(NUM_COL_TENTATIVEECHOUEE));
+            pt.setNb_tentative_reussie(c.getInt(NUM_COL_TENTATIVEREUSSIE));
+            pt.setTemps_auth_moyen(c.getFloat(NUM_COL_TEMPSMOYEN));
+            pt.setMdp(c.getString(NUM_COL_MDP));
             c.close();
         }
 
-        return djv;
+        return pt;
     }
 
 
     /**
-     * Met à jour la Methode DejaVu passé en paramètre pour les tentatives et l'authentification moyen
+     * Met à jour la Methode Passpoint passé en paramètre pour les tentatives et l'authentification moyen
      * dans la bdd.
-     * @param djv
+     * @param pt
      * @param tentative_echouee
      * @param tentative_reussi
      * @param auth_moyen
      * @return le nombre de lignes updated
      */
-    public int updateDejaVu(DejaVu djv, int tentative_echouee, int tentative_reussi, float auth_moyen) {
-        int id = djv.getId();
+    public int updateDejaVu(Passpoint pt, int tentative_echouee, int tentative_reussi, float auth_moyen) {
+        int id = pt.getId();
         ContentValues values = new ContentValues();
         values.put(COL_TENTATIVEECHOUEE, tentative_echouee);
         values.put(COL_TENTATIVEREUSSIE, tentative_reussi);
@@ -190,14 +177,14 @@ public class DejaVuManager {
     }
 
     /**
-     * Met à jour la Methode DejaVu passé en paramètre pour les configurations dans la bdd.
-     * @param djv
+     * Met à jour la Methode Passpoint passé en paramètre pour les configurations dans la bdd.
+     * @param pt
      * @param nbIcone
      * @param doublon
      * @return
      */
-    public int updateConfiguration(DejaVu djv, int nbIcone, int doublon){
-        int id = djv.getId();
+    public int updateConfiguration(Passpoint pt, int nbIcone, int doublon){
+        int id = pt.getId();
         ContentValues values = new ContentValues();
         values.put(COL_ICONE, nbIcone);
         values.put(COL_DOUBLON, doublon);
@@ -206,24 +193,24 @@ public class DejaVuManager {
 
     /**
      * Met a jour le mot de passe dans la bdd
-     * @param djv
+     * @param pt
      * @param str
      * @return
      */
-    public int setPassword(DejaVu djv, String str){
-        int id = djv.getId();
+    public int setPassword(Passpoint pt, String str){
+        int id = pt.getId();
         ContentValues values = new ContentValues();
         values.put(COL_MDP, str);
         return db.update(TABLE_NAME, values, COL_ID + " = " + id, null);
     }
 
     /**
-     * Retourne vrai si une méthode DejaVu est dans la base de donnée, faux le contraire
+     * Retourne vrai si une méthode Passpoint est dans la base de donnée, faux le contraire
      * @return boolean.
      */
     public boolean exist(){
-        DejaVu djv = new DejaVu();
-        int id = djv.getId();
+        Passpoint pt = new Passpoint();
+        int id = pt.getId();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + "=" + id, null);
 
         if(c.getCount() < 1){
@@ -236,27 +223,17 @@ public class DejaVuManager {
 
     /**
      * Retourne vrai si le mot de passe n'a pas été changé.
-     * @param djv
+     * @param pt
      * @return boolean
      */
-    public boolean defaultPassword(DejaVu djv){
-        if(djv.getMdp().compareTo("") != 0){
+    public boolean defaultPassword(Passpoint pt){
+        if(pt.getMdp().compareTo("") != 0){
             return false;
         }
         else return true;
     }
 
-    /**
-     * Retourne true si la méthode contient des doublons.
-     * @param djv
-     * @return
-     */
-    public boolean doublon(DejaVu djv){
-        if(djv.getDoublon() > 0){
-            return true;
-        }
-        else return false;
-    }
+
 
 
 

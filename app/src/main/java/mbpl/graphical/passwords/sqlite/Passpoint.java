@@ -1,48 +1,43 @@
 package mbpl.graphical.passwords.sqlite;
 
 /**
- * Created by Matteo on 08/04/2016.
+ * Created by Matteo on 26/04/2016.
  */
 
 /**
- * Methode DejaVu.
+ * Methode Passpoint.
  */
-public class DejaVu {
+public class Passpoint {
 
 
     private int id, bruteForce, dictionaryAttack, shoulderSurfing, smudgeAttack, eyeTracking, spyWare, espaceMdp;
     private int apprentissage, memorisation, temps, satisfaction, nb_tentative_reussie, nb_tentative_echouee;
-    private String nom, categorie, mdp;
+    private String nom, categorie,mdp;
     private Float indiceSecurite, indiceUtilisabilite, temps_auth_moyen;
-    private int nbIcone, doublon;
 
 
-    public DejaVu() {
-        this.id = 1;
-        this.nom = "Déjà Vu";
-        this.categorie = "reconnaissance";
-        this.bruteForce = 0;
-        this.dictionaryAttack = 2;
-        this.shoulderSurfing = 2;
-        this.smudgeAttack = 5;
-        this.eyeTracking = 5;
-        this.spyWare = 3;
-        this.espaceMdp = 1;
-        this.indiceSecurite = 2.57f;
-        this.apprentissage = 2;
-        this.memorisation = 3;
+    public Passpoint() {
+        this.id = 2;
+        this.nom = "Passpoint";
+        this.categorie = "rappel indicé";
+        this.bruteForce = 5;
+        this.dictionaryAttack = 3;
+        this.shoulderSurfing = 0;
+        this.smudgeAttack = 0;
+        this.eyeTracking = 3;
+        this.spyWare = 2;
+        this.espaceMdp = 3;
+        this.indiceSecurite = 2.29f;
+        this.apprentissage = 3;
+        this.memorisation = 5;
         this.temps = 3;
         this.satisfaction = 3;
-        this.indiceUtilisabilite = 2.75f;
+        this.indiceUtilisabilite = 3.5f;
 
         this.nb_tentative_echouee = 0;
         this.nb_tentative_reussie = 0;
         this.temps_auth_moyen = 0f;
-        this.mdp = "";
-
-        this.nbIcone = 24;
-        this.doublon = 0;
-
+        this.mdp= "";
     }
 
     public int getId() {
@@ -145,20 +140,5 @@ public class DejaVu {
     public void setMdp(String motDePasse) {
         this.mdp = motDePasse;
     }
-
-    public int getNbIcone() {
-        return nbIcone;
-    }
-
-    public void setNbIcone(int nbIcone) {
-        this.nbIcone = nbIcone;
-    }
-
-    public int getDoublon() {
-        return doublon;
-    }
-
-    public void setDoublon(int doublon) {
-        this.doublon = doublon;
-    }
 }
+
