@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -15,6 +17,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import mbpl.graphical.passwords.sqlite.DejaVu;
+import mbpl.graphical.passwords.sqlite.DejaVuManager;
+
 /**
  * Created by benja135 on 05/03/16.
  * Activité d'authentification de la méthode "Déjà Vu".
@@ -22,11 +27,11 @@ import java.util.List;
 public class Authentification extends AppCompatActivity {
 
     private final int nbIcone = 258;
-    private final int tailleIcone = 256;
-    private final int nbLigne = 6;
-    private final int nbColonne = 4;
+    private int tailleIcone = 256;
+    private int nbLigne = 6;
+    private int nbColonne = 4;
 
-    private List<Integer> trueMotDePasse = new ArrayList<>(); // TODO récup le mdp dans la BDD
+    private List<Integer> trueMotDePasse;
     private List<Integer> inputMotDePasse = new ArrayList<>();
     private long time;
 
@@ -34,11 +39,20 @@ public class Authentification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Mot de passe de 4 en dur pour les tests (icônes Adobe reader)
-        trueMotDePasse.add(7);
-        trueMotDePasse.add(7);
-        trueMotDePasse.add(7);
-        trueMotDePasse.add(7);
+        DejaVuManager dejaVuBDD = new DejaVuManager(getApplicationContext());
+        dejaVuBDD.open();
+        DejaVu dejaVu = dejaVuBDD.getDejaVu();
+        trueMotDePasse = stringArrayToIntArray(dejaVu.getMdp());
+        int nbIconeParPhase = dejaVu.getNbIcone();
+        if (nbIconeParPhase == 6) {
+            nbLigne = 3;
+            nbColonne = 2;
+        } else if (nbIconeParPhase == 96) {
+            nbLigne = 12;
+            nbColonne = 8;
+            tailleIcone = 96;;
+        }
+        dejaVuBDD.close();
     }
 
     @Override
@@ -136,18 +150,20 @@ public class Authentification extends AppCompatActivity {
         inputMotDePasse.add(selectedIcon);
 
         if (inputMotDePasse.size() == trueMotDePasse.size()) {
+            DejaVuManager dejaVuBDD = new DejaVuManager(getApplicationContext());
+            dejaVuBDD.open();
+            DejaVu dejaVu = dejaVuBDD.getDejaVu();
             if (inputMotDePasse.equals(trueMotDePasse)) {
                 time = System.currentTimeMillis() - time; // temps de l'authentification
                 inputMotDePasse.clear();
                 Toast.makeText(Authentification.this, "Authentification OK !", Toast.LENGTH_LONG).show();
                 Intent accueil = new Intent(Authentification.this, mbpl.graphical.passwords.Accueil.class);
-                /* TODO revenir au menu en passant les statistiques du log (temps, réussi ou échoué)
-                Bundle bundle = new Bundle();
-                bundle.putInt("temps", (int) time/1000);
-                bundle.putBoolean("reussi", true);
-                authentification.putExtras(bundle);*/
+                dejaVuBDD.addTentativeReussie(dejaVu, (float) time/1000);
+                dejaVuBDD.close();
                 startActivity(accueil);
             } else {
+                dejaVuBDD.addTentativeEchouee(dejaVu);
+                dejaVuBDD.close();
                 Toast.makeText(Authentification.this, "Authentification échoué", Toast.LENGTH_LONG).show();
                 inputMotDePasse.clear();
                 drawAndSetListeners(trueMotDePasse.get(inputMotDePasse.size()));
@@ -194,4 +210,26 @@ public class Authentification extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * Convertie une chaine de caractères en liste d'entier.
+     * La chaine doit être de la forme ArrayList.toString().
+     * http://stackoverflow.com/questions/7646392/convert-string-to-int-array-in-java
+     *
+     * @param pass chaine de forme ArrayList.toString().
+     * @return liste d'entier
+     */
+    public List<Integer> stringArrayToIntArray(String pass) {
+
+        String[] items = pass.replaceAll("\\[", "").replaceAll(" ", "").replaceAll("\\]", "").split(",");
+
+        List results = new ArrayList<>();
+
+        for (int i = 0; i < items.length; i++) {
+            try {
+                results.add(Integer.parseInt(items[i]));
+            } catch (NumberFormatException nfe) {
+            }
+        }
+        return results;
+    }
 }

@@ -125,10 +125,11 @@ public class DejaVuManager {
 
     /**
      * Supprime la méthode de la base de donnée
+     *
      * @param djv
      * @return le nombre de lignes supprimées
      */
-    public int removeDejaVu(DejaVu djv){
+    public int removeDejaVu(DejaVu djv) {
         long id = djv.getId();
         return db.delete(TABLE_NAME, COL_ID + " = " + id, null);
     }
@@ -139,13 +140,14 @@ public class DejaVuManager {
      * @param id
      * @return le nombre de lignes supprimées
      */
-    public int removeDejaVu(int id){
+    public int removeDejaVu(int id) {
 
         return db.delete(TABLE_NAME, COL_ID + " = " + id, null);
     }
 
     /**
      * Retourne la méthode DejaVu depuis la bdd.
+     *
      * @return la méthode
      */
     public DejaVu getDejaVu() {
@@ -173,30 +175,67 @@ public class DejaVuManager {
     /**
      * Met à jour la Methode DejaVu passé en paramètre pour les tentatives et l'authentification moyen
      * dans la bdd.
+     *
      * @param djv
      * @param tentative_echouee
      * @param tentative_reussi
      * @param auth_moyen
      * @return le nombre de lignes updated
      */
-    public int updateDejaVu(DejaVu djv, int tentative_echouee, int tentative_reussi, float auth_moyen) {
+    public int setStatsDejaVu(DejaVu djv, int tentative_echouee, int tentative_reussi, float auth_moyen) {
         int id = djv.getId();
         ContentValues values = new ContentValues();
         values.put(COL_TENTATIVEECHOUEE, tentative_echouee);
         values.put(COL_TENTATIVEREUSSIE, tentative_reussi);
         values.put(COL_TEMPSMOYEN, auth_moyen);
         return db.update(TABLE_NAME, values, COL_ID + " = " + id, null);
+    }
 
+
+    /**
+     * Met à jour le nombre de tentatives réussies en additionnant avec ce qu'il y avait avant.
+     * Met à jour le temps moyen.
+     *
+     * @param djv
+     * @param auth_moyen
+     * @return le nombre de lignes updated
+     */
+    public int addTentativeReussie(DejaVu djv, float auth_moyen){
+        int id = djv.getId();
+        int newTentativeReussi = djv.getNb_tentative_reussie() + 1;
+        float newAuthenMoyen = (djv.getTemps_auth_moyen() * (float) djv.getNb_tentative_reussie()
+                + auth_moyen) / (float) newTentativeReussi;
+
+        ContentValues values = new ContentValues();
+        values.put(COL_TENTATIVEREUSSIE, newTentativeReussi);
+        values.put(COL_TEMPSMOYEN, newAuthenMoyen);
+        return db.update(TABLE_NAME, values, COL_ID + " = " + id, null);
+    }
+
+    /**
+     * Met à jour le nombre de tentatives échouée en additionnant avec ce qu'il y avait avant.
+     *
+     * @param djv
+     * @return le nombre de lignes updated
+     */
+    public int addTentativeEchouee(DejaVu djv) {
+        int id = djv.getId();
+        int newTentativeEchouee = djv.getNb_tentative_echouee() + 1;
+
+        ContentValues values = new ContentValues();
+        values.put(COL_TENTATIVEECHOUEE, newTentativeEchouee);
+        return db.update(TABLE_NAME, values, COL_ID + " = " + id, null);
     }
 
     /**
      * Met à jour la Methode DejaVu passé en paramètre pour les configurations dans la bdd.
+     *
      * @param djv
      * @param nbIcone
      * @param doublon
      * @return
      */
-    public int updateConfiguration(DejaVu djv, int nbIcone, boolean doublon){
+    public int updateConfiguration(DejaVu djv, int nbIcone, boolean doublon) {
         int id = djv.getId();
         ContentValues values = new ContentValues();
         values.put(COL_ICONE, nbIcone);
@@ -206,11 +245,12 @@ public class DejaVuManager {
 
     /**
      * Met a jour le mot de passe dans la bdd
+     *
      * @param djv
      * @param str
      * @return
      */
-    public int setPassword(DejaVu djv, String str){
+    public int setPassword(DejaVu djv, String str) {
         int id = djv.getId();
         ContentValues values = new ContentValues();
         values.put(COL_MDP, str);
@@ -219,49 +259,48 @@ public class DejaVuManager {
 
     /**
      * Retourne vrai si une méthode DejaVu est dans la base de donnée, faux le contraire
+     *
      * @return boolean.
      */
-    public boolean exist(){
+    public boolean exist() {
         DejaVu djv = new DejaVu();
         int id = djv.getId();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + "=" + id, null);
 
-        if(c.getCount() < 1){
+        if (c.getCount() < 1) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
 
     /**
      * Retourne vrai si le mot de passe n'a pas été changé.
+     *
      * @param djv
      * @return boolean
      */
-    public boolean defaultPassword(DejaVu djv){
-        if(djv.getMdp().compareTo("") != 0){
+    public boolean defaultPassword(DejaVu djv) {
+        if (djv.getMdp().compareTo("") != 0) {
             return false;
-        }
-        else return true;
+        } else return true;
     }
 
     /**
      * Retourne true si la méthode contient des doublons.
+     *
      * @param djv
      * @return
      */
-    public boolean doublon(DejaVu djv){
+    public boolean doublon(DejaVu djv) {
         return djv.getDoublon();
     }
 
 
-
     public Cursor getMethode() {
         // sélection de tous les enregistrements de la table
-        return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
-
 
 
 }

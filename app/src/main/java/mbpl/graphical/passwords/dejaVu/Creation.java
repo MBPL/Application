@@ -133,9 +133,7 @@ public class Creation extends AppCompatActivity {
                         DejaVuManager dejaVuBDD = new DejaVuManager(getApplicationContext());
                         dejaVuBDD.open();
                         DejaVu dejaVu = dejaVuBDD.getDejaVu();
-                        Log.v("pass", pass.toString());
-                        System.out.println(pass.toString());
-                        //dejaVuBDD.setPassword(dejaVu, "");
+                        dejaVuBDD.setPassword(dejaVu, pass.toString());
                         dejaVuBDD.close();
                         Intent authentification = new Intent(Creation.this, Authentification.class);
                         startActivity(authentification);

@@ -65,7 +65,7 @@ public class TestDejaVuBDD extends AppCompatActivity {
                 Log.v("mdp avant", "=>" + dejaVuFromBdd1.getMdp());
 
                 //Test modification
-                dejaVuManager.updateDejaVu(dejaVuFromBdd1, 2, 2, 3f);
+                dejaVuManager.setStatsDejaVu(dejaVuFromBdd1, 2, 2, 3f);
 
                 //Re - Récupération
                 dejaVuFromBdd1 = dejaVuManager.getDejaVu();
