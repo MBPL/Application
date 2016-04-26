@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.sqlite.DejaVu;
 import mbpl.graphical.passwords.sqlite.DejaVuManager;
+import mbpl.graphical.passwords.sqlite.Passfaces;
+import mbpl.graphical.passwords.sqlite.PassfacesManager;
 import mbpl.graphical.passwords.sqlite.Passpoint;
 import mbpl.graphical.passwords.sqlite.PasspointManager;
 
@@ -35,6 +37,12 @@ public class Accueil extends AppCompatActivity {
             passpointManager.addPasspoint(new Passpoint());
         }
         passpointManager.close();
+        PassfacesManager passfacesManager = new PassfacesManager(getApplicationContext());
+        passfacesManager.open();
+        if (!passfacesManager.exist()) {
+            passfacesManager.addPassfaces(new Passfaces());
+        }
+        passfacesManager.close();
 
         setContentView(R.layout.menu_accueil);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
