@@ -5,8 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+
+
 /**
  * Created by Matteo on 08/04/2016.
+ */
+
+/**
  * Permet d'intéragir avec la base de donnée  (manipuler les données)
  */
 public class DejaVuManager {
@@ -110,23 +115,21 @@ public class DejaVuManager {
 
     /**
      * Supprime la méthode de la base de donnée
-     *
      * @param djv
      * @return le nombre de ligne supp
      */
-    public int removeDejaVu(DejaVu djv) {
+    public int removeDejaVu(DejaVu djv){
         long id = djv.getId();
         return db.delete(TABLE_NAME, COL_ID + " = " + id, null);
     }
 
-    public int removeDejaVu(int id) {
+    public int removeDejaVu(int id){
 
         return db.delete(TABLE_NAME, COL_ID + " = " + id, null);
     }
 
     /**
      * Retourne la méthode deja depuis la base.
-     *
      * @param dejavue
      * @return la méthode
      */
@@ -144,11 +147,13 @@ public class DejaVuManager {
             djv.setMdp(c.getString(NUM_COL_MDP));
 
 
+
             c.close();
         }
 
         return djv;
     }
+
 
 
     public int updateDejaVu(DejaVu djv, int tentative_echouee, int tentative_reussi, float auth_moyen) {
@@ -161,18 +166,47 @@ public class DejaVuManager {
 
     }
 
-    public int setPassword(DejaVu djv, String str) {
+    public int setPassword(DejaVu djv, String str){
         int id = djv.getId();
         ContentValues values = new ContentValues();
         values.put(COL_MDP, str);
         return db.update(TABLE_NAME, values, COL_ID + " = " + id, null);
     }
 
+    /**
+     * Retourne vrai si une méthode DejaVu est dans la base de donnée, faux le contraire
+     * @return boolean.
+     */
+    public boolean exist(){
+        DejaVu djv = new DejaVu();
+        int id = djv.getId();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + "=" + id, null);
+
+        if(c.getCount() < 1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    /**
+     * Retourne vrai si le mot de passe n'a pas été changé.
+     * @param djv
+     * @return boolean
+     */
+    public boolean defaultPassword(DejaVu djv){
+        if(djv.getMdp().compareTo("") != 0){
+            return false;
+        }
+        else return true;
+    }
 
     public Cursor getMethode() {
         // sélection de tous les enregistrements de la table
-        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
     }
+
 
 
 }
