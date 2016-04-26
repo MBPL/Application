@@ -164,8 +164,7 @@ public class TabFragment1 extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "You Clicked at " + listeNomsMdp[+position], Toast.LENGTH_SHORT).show();
-
+                showAlertDescription(view, position);
             }
         });
 
