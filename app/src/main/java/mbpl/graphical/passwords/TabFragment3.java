@@ -21,6 +21,7 @@ import java.util.zip.Deflater;
 
 import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.sqlite.DejaVu;
+import mbpl.graphical.passwords.sqlite.Passfaces;
 import mbpl.graphical.passwords.sqlite.Passpoint;
 
 public class TabFragment3 extends Fragment {
@@ -62,117 +63,117 @@ public class TabFragment3 extends Fragment {
                     case 0:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getNom());
+                                tv.setText(""+pp.getNom());
                                 break;
                             case 1:
-                                tv.setText(dv.getNom());
+                                tv.setText(""+dv.getNom());
                                 break;
                             case 2:
-                                tv.setText(pf.getNom());
+                                tv.setText(""+pf.getNom());
                                 break;
                         }
                         break;
                     case 1:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getCategorie());
+                                tv.setText(""+pp.getCategorie());
                                 break;
                             case 1:
-                                tv.setText(dv.getCategorie());
+                                tv.setText(""+dv.getCategorie());
                                 break;
                             case 2:
-                                tv.setText(pf.getCategorie());
+                                tv.setText(""+pf.getCategorie());
                                 break;
                         }
                         break;
                     case 2:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getBruteForce());
+                                tv.setText(""+pp.getBruteForce());
                                 break;
                             case 1:
-                                tv.setText(dv.getBruteForce());
+                                tv.setText(""+dv.getBruteForce());
                                 break;
                             case 2:
-                                tv.setText(pf.getBruteForce());
+                                tv.setText(""+pf.getBruteForce());
                                 break;
                         }
                         break;
                     case 3:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getDictionaryAttack());
+                                tv.setText(""+pp.getDictionaryAttack());
                                 break;
                             case 1:
-                                tv.setText(dv.getDictionaryAttack());
+                                tv.setText(""+dv.getDictionaryAttack());
                                 break;
                             case 2:
-                                tv.setText(pf.getDictionaryAttack());
+                                tv.setText(""+pf.getDictionaryAttack());
                                 break;
                         }
                         break;
                     case 4:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getShoulderSurfing());
+                                tv.setText(""+pp.getShoulderSurfing());
                                 break;
                             case 1:
-                                tv.setText(dv.getShoulderSurfing());
+                                tv.setText(""+dv.getShoulderSurfing());
                                 break;
                             case 2:
-                                tv.setText(pf.getShoulderSurfing());
+                                tv.setText(""+pf.getShoulderSurfing());
                                 break;
                         }
                         break;
                     case 5:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getSmudgeAttack());
+                                tv.setText(""+pp.getSmudgeAttack());
                                 break;
                             case 1:
-                                tv.setText(dv.getSmudgeAttack());
+                                tv.setText(""+dv.getSmudgeAttack());
                                 break;
                             case 2:
-                                tv.setText(pf.getSmudgeAttack());
+                                tv.setText(""+pf.getSmudgeAttack());
                                 break;
                         }
                         break;
                     case 6:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getEyeTracking());
+                                tv.setText(""+pp.getEyeTracking());
                                 break;
                             case 1:
-                                tv.setText(dv.getEyeTracking());
+                                tv.setText(""+dv.getEyeTracking());
                                 break;
                             case 2:
-                                tv.setText(pf.getEyeTracking());
+                                tv.setText(""+pf.getEyeTracking());
                                 break;
                         }
                         break;
                     case 7:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getSpyWare());
+                                tv.setText(""+pp.getSpyWare());
                                 break;
                             case 1:
-                                tv.setText(dv.getSpyWare());
+                                tv.setText(""+dv.getSpyWare());
                                 break;
                             case 2:
-                                tv.setText(pf.getSpyWare());
+                                tv.setText(""+pf.getSpyWare());
                                 break;
                         }
                         break;
                     case 8:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getEspaceMdp());
+                                tv.setText(""+pp.getEspaceMdp());
                                 break;
                             case 1:
-                                tv.setText(dv.getEspaceMdp());
+                                tv.setText(""+dv.getEspaceMdp());
                                 break;
                             case 2:
-                                tv.setText(pf.getEspaceMdp());
+                                tv.setText(""+pf.getEspaceMdp());
                                 break;
                         }
                         break;
@@ -192,52 +193,52 @@ public class TabFragment3 extends Fragment {
                     case 10:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getApprentissage());
+                                tv.setText(""+pp.getApprentissage());
                                 break;
                             case 1:
-                                tv.setText(dv.getApprentissage());
+                                tv.setText(""+dv.getApprentissage());
                                 break;
                             case 2:
-                                tv.setText(pf.getApprentissage());
+                                tv.setText(""+pf.getApprentissage());
                                 break;
                         }
                         break;
                     case 11:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getMemorisation());
+                                tv.setText(""+pp.getMemorisation());
                                 break;
                             case 1:
-                                tv.setText(dv.getMemorisation());
+                                tv.setText(""+dv.getMemorisation());
                                 break;
                             case 2:
-                                tv.setText(pf.getMemorisation());
+                                tv.setText(""+pf.getMemorisation());
                                 break;
                         }
                         break;
                     case 12:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getTemps());
+                                tv.setText(""+pp.getTemps());
                                 break;
                             case 1:
-                                tv.setText(dv.getTemps());
+                                tv.setText(""+dv.getTemps());
                                 break;
                             case 2:
-                                tv.setText(pf.getTemps());
+                                tv.setText(""+pf.getTemps());
                                 break;
                         }
                         break;
                     case 13:
                         switch(c) {
                             case 0:
-                                tv.setText(pp.getSatisfaction());
+                                tv.setText(""+pp.getSatisfaction());
                                 break;
                             case 1:
-                                tv.setText(dv.getSatisfaction());
+                                tv.setText(""+dv.getSatisfaction());
                                 break;
                             case 2:
-                                tv.setText(pf.getSatisfaction());
+                                tv.setText(""+pf.getSatisfaction());
                                 break;
                         }
                         break;

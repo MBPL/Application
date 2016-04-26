@@ -21,7 +21,7 @@
                 android:id="@+id/glf3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="4">
+                android:columnCount="3">
             </GridLayout>
 
         </HorizontalScrollView>

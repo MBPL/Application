@@ -196,7 +196,7 @@ public class DejaVuManager {
      * @param doublon
      * @return
      */
-    public int updateConfiguration(DejaVu djv, int nbIcone, int doublon){
+    public int updateConfiguration(DejaVu djv, int nbIcone, boolean doublon){
         int id = djv.getId();
         ContentValues values = new ContentValues();
         values.put(COL_ICONE, nbIcone);
@@ -252,10 +252,7 @@ public class DejaVuManager {
      * @return
      */
     public boolean doublon(DejaVu djv){
-        if(djv.getDoublon() > 0){
-            return true;
-        }
-        else return false;
+        return djv.getDoublon();
     }
 
 
