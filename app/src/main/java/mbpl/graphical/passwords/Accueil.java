@@ -24,13 +24,17 @@ public class Accueil extends AppCompatActivity {
 
         // On crée les tables en BDD si elles n'existent pas
         DejaVuManager dejaVuManager = new DejaVuManager(getApplicationContext());
+        dejaVuManager.open();
         if (!dejaVuManager.exist()) {
             dejaVuManager.addDejaVu(new DejaVu());
         }
+        dejaVuManager.close();
         PasspointManager passpointManager = new PasspointManager(getApplicationContext());
+        passpointManager.open();
         if (!passpointManager.exist()) {
             passpointManager.addPasspoint(new Passpoint());
         }
+        passpointManager.close();
 
         setContentView(R.layout.menu_accueil);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

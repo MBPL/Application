@@ -58,7 +58,7 @@ public class Configuration extends Activity {
         // Gestion de la checkbox
 
         final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBoxDoublons);
-        checkBox.setEnabled(dejaVu.getDoublon());
+        checkBox.setChecked(dejaVu.getDoublon());
 
 
         // Gestion des boutons
@@ -70,13 +70,13 @@ public class Configuration extends Activity {
 
             @Override
             public void onClick(View v) {
-                spinner.setSelection(24);
-                checkBox.setEnabled(false);
+                spinner.setSelection(1);
+                checkBox.setChecked(false);
             }
         });
 
         // Listener sur le bouton "Appliquer"
-        Button btnAppliquer = (Button) findViewById(R.id.buttonAdvanced);
+        Button btnAppliquer = (Button) findViewById(R.id.buttonAppliquer);
 
         btnAppliquer.setOnClickListener(new View.OnClickListener() {
 
