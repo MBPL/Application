@@ -24,7 +24,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mode par défaut"
+        android:text="Créer le mot de passe"
         android:id="@+id/buttonDefault"
         android:layout_below="@+id/textViewTitre"
         android:layout_alignLeft="@+id/buttonAdvanced"
