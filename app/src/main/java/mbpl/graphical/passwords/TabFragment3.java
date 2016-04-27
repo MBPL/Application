@@ -4,7 +4,6 @@ package mbpl.graphical.passwords;
  * Created by pierre on 09/04/16.
  */
 
-import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,12 +17,14 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.util.zip.Deflater;
+import java.util.ArrayList;
+import java.util.List;
 
-import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.sqlite.DejaVu;
+import mbpl.graphical.passwords.sqlite.Methode;
 import mbpl.graphical.passwords.sqlite.Passfaces;
 import mbpl.graphical.passwords.sqlite.Passpoint;
+
 
 public class TabFragment3 extends Fragment {
 
@@ -34,7 +35,6 @@ public class TabFragment3 extends Fragment {
     GridLayout glf3;
     TextView tv;
     GridLayout.LayoutParams p;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,266 +48,126 @@ public class TabFragment3 extends Fragment {
         glf3.setRowCount(15);
         glf3.setColumnCount(4);
 
-
         Point size = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
-        int screenWidth = size.x;
-        int screenHeight = size.y - getStatusBarHeight();
 
-        Passpoint pp = new Passpoint();
-        DejaVu dv = new DejaVu();
-        Passfaces pf = new Passfaces();
+        List<Methode> methodeList = new ArrayList<Methode>();
+        methodeList.add(new Passpoint());
+        methodeList.add(new DejaVu());
+        methodeList.add(new Passfaces());
 
         for (int c = 0; c < 4; c++) {
             for (int l = 0; l < 15; l++) {
 
                 tv = new TextView(getActivity());
 
-
-                switch(l){
+                switch (l) {
                     case 0:
-                        switch(c) {
-                            case 0:
-                                tv.setText("Nom");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getNom());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getNom());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getNom());
-                                break;
+                        if (c == 0) {
+                            tv.setText("Nom");
+                        } else {
+                            tv.setText(methodeList.get(c - 1).getNom());
                         }
                         break;
                     case 1:
-                        switch(c) {
-                            case 0:
-                                tv.setText("Categorie");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getCategorie());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getCategorie());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getCategorie());
-                                break;
+                        if (c == 0) {
+                            tv.setText("Categorie");
+                        } else {
+                            tv.setText(methodeList.get(c - 1).getCategorie());
                         }
                         break;
                     case 2:
-                        switch(c) {
-                            case 0:
-                                tv.setText("BruteForceAttack");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getBruteForce());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getBruteForce());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getBruteForce());
-                                break;
+                        if (c == 0) {
+                            tv.setText("BruteForceAttack");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getBruteForce()));
                         }
                         break;
                     case 3:
-                        switch(c) {
-                            case 0:
-                                tv.setText("DictionnaryAttack");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getDictionaryAttack());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getDictionaryAttack());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getDictionaryAttack());
-                                break;
+                        if (c == 0) {
+                            tv.setText("DictionnaryAttack");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getDictionaryAttack()));
                         }
                         break;
                     case 4:
-                        switch(c) {
-                            case 0:
-                                tv.setText("ShoulderSurfingAttack");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getShoulderSurfing());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getShoulderSurfing());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getShoulderSurfing());
-                                break;
+                        if (c == 0) {
+                            tv.setText("ShoulderSurfingAttack");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getShoulderSurfing()));
                         }
                         break;
                     case 5:
-                        switch(c) {
-                            case 0:
-                                tv.setText("SmudgeAttack");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getSmudgeAttack());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getSmudgeAttack());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getSmudgeAttack());
-                                break;
+                        if (c == 0) {
+                            tv.setText("SmudgeAttack");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getSmudgeAttack()));
                         }
                         break;
                     case 6:
-                        switch(c) {
-                            case 0:
-                                tv.setText("EyeTrackingAttack");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getEyeTracking());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getEyeTracking());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getEyeTracking());
-                                break;
+                        if (c == 0) {
+                            tv.setText("EyeTrackingAttack");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getEyeTracking()));
                         }
                         break;
                     case 7:
-                        switch(c) {
-                            case 0:
-                                tv.setText("SpyWareAttack");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getSpyWare());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getSpyWare());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getSpyWare());
-                                break;
+                        if (c == 0) {
+                            tv.setText("SpyWareAttack");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getSpyWare()));
                         }
                         break;
                     case 8:
-                        switch(c) {
-                            case 0:
-                                tv.setText("EspaceMDP");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getEspaceMdp());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getEspaceMdp());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getEspaceMdp());
-                                break;
+                        if (c == 0) {
+                            tv.setText("EspaceMDP");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getEspaceMdp()));
                         }
                         break;
                     case 9:
-                        switch(c) {
-                            case 0:
-                                tv.setText("IndiceSecurite");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getIndiceSecurite());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getIndiceSecurite());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getIndiceSecurite());
-                                break;
+                        if (c == 0) {
+                            tv.setText("IndiceSecurite");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getIndiceSecurite()));
                         }
                         break;
                     case 10:
-                        switch(c) {
-                            case 0:
-                                tv.setText("Apprentissage");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getApprentissage());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getApprentissage());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getApprentissage());
-                                break;
+                        if (c == 0) {
+                            tv.setText("Apprentissage");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getApprentissage()));
                         }
                         break;
                     case 11:
-                        switch(c) {
-                            case 0:
-                                tv.setText("Memorisation");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getMemorisation());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getMemorisation());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getMemorisation());
-                                break;
+                        if (c == 0) {
+                            tv.setText("Memorisation");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getMemorisation()));
                         }
                         break;
                     case 12:
-                        switch(c) {
-                            case 0:
-                                tv.setText("Temps");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getTemps());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getTemps());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getTemps());
-                                break;
+                        if (c == 0) {
+                            tv.setText("Temps");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getTemps()));
                         }
                         break;
                     case 13:
-                        switch(c) {
-                            case 0:
-                                tv.setText("Satisfaction");
-                                break;
-                            case 1:
-                                tv.setText(""+pp.getSatisfaction());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getSatisfaction());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getSatisfaction());
-                                break;
+                        if (c == 0) {
+                            tv.setText("Satisfaction");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getSatisfaction()));
                         }
                         break;
                     case 14:
-                        switch(c) {
-                            case 0:
-                                tv.setText("IndiceUtilisabilite");
-                                break;
-                            case 1:
-                                tv.setText("" + pp.getIndiceUtilisabilite());
-                                break;
-                            case 2:
-                                tv.setText(""+dv.getIndiceUtilisabilite());
-                                break;
-                            case 3:
-                                tv.setText(""+pf.getIndiceUtilisabilite());
-                                break;
+                        if (c == 0) {
+                            tv.setText("IndiceUtilisabilite");
+                        } else {
+                            tv.setText(String.valueOf(methodeList.get(c - 1).getIndiceUtilisabilite()));
                         }
                         break;
                 }
-
-
 
                 p = new GridLayout.LayoutParams();
                 //p.height = screenHeight / 6;
@@ -326,12 +186,4 @@ public class TabFragment3 extends Fragment {
         return rootView;
     }
 
-    public int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
 }
