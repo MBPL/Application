@@ -64,12 +64,11 @@ public class TabFragment1 extends Fragment {
         String descPasspoints = "- Choisir une image.\n- Choisir au moins un point à repérer sur cette image.\n- Faire 'Suivant'.\n- Retrouver ces points.";
         String descDejaVu = "- Choisir une suite d'images.\n" +
                 "- Appuyer sur 'Valider'.\n" +
-                "- Cliquer sur les images dans l'ordre pour vous authentifier";
+                "- Cliquer sur les images dans l'ordre pour vous authentifier.";
         String descPassfaces = "- Choisir une suite d'images.\n" +
                 "- Appuyer sur 'Valider'.\n" +
-                "- Cliquer sur les images dans l'ordre pour vous authentifier";
+                "- Cliquer sur les images dans l'ordre pour vous authentifier.";
 
-        // TODO faire les images en bandeau
         tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, 1, 0, 0));
         tab.add(new TypeAuthentification("Déjà Vu", "icon96x96_2", descDejaVu, 2, 0, 0));
         tab.add(new TypeAuthentification("Passfaces", "icon96x96_3", descPassfaces, 3, 0, 0));

@@ -8,11 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.sqlite.DejaVu;
-import mbpl.graphical.passwords.sqlite.DejaVuManager;
+import mbpl.graphical.passwords.sqlite.MethodeManager;
+import mbpl.graphical.passwords.sqlite.Passfaces;
 import mbpl.graphical.passwords.sqlite.Passpoint;
-import mbpl.graphical.passwords.sqlite.PasspointManager;
 
 
 public class Accueil extends AppCompatActivity {
@@ -23,18 +22,18 @@ public class Accueil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // On crée les tables en BDD si elles n'existent pas
-        DejaVuManager dejaVuManager = new DejaVuManager(getApplicationContext());
-        dejaVuManager.open();
-        if (!dejaVuManager.exist()) {
-            dejaVuManager.addDejaVu(new DejaVu());
+        MethodeManager methodeManager = new MethodeManager(getApplicationContext());
+        methodeManager.open();
+        if (!methodeManager.exist(new DejaVu())) {
+            methodeManager.addMethode(new DejaVu());
         }
-        dejaVuManager.close();
-        PasspointManager passpointManager = new PasspointManager(getApplicationContext());
-        passpointManager.open();
-        if (!passpointManager.exist()) {
-            passpointManager.addPasspoint(new Passpoint());
+        if (!methodeManager.exist(new Passpoint())) {
+            methodeManager.addMethode(new Passpoint());
         }
-        passpointManager.close();
+        if (!methodeManager.exist(new Passfaces())) {
+            methodeManager.addMethode(new Passfaces());
+        }
+        methodeManager.close();
 
         setContentView(R.layout.menu_accueil);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

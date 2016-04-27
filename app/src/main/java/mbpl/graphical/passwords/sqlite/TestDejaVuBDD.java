@@ -23,7 +23,7 @@ public class TestDejaVuBDD extends AppCompatActivity {
 
         this.deleteDatabase("methode.db");
 
-        final DejaVuManager dejaVuManager = new DejaVuManager(this);
+        final MethodeManager dejaVuManager = new MethodeManager(this);
 
         // On ouvre la base de données pour écrire dedans
         dejaVuManager.open();
@@ -32,22 +32,22 @@ public class TestDejaVuBDD extends AppCompatActivity {
         DejaVu methodeDejaVu = new DejaVu();
 
         //test si exist dans BD
-        boolean flagBD = dejaVuManager.exist();
+        boolean flagBD = dejaVuManager.exist(new DejaVu());
         if (!flagBD) {
             Log.v("exist", "TEST OK => NEXISTE PAS");
         }
 
 
-        long numeroEnregistrement = dejaVuManager.addDejaVu(methodeDejaVu);
+        long numeroEnregistrement = dejaVuManager.addMethode(methodeDejaVu);
 
 
         if (numeroEnregistrement != -1) {
 
             // Récupération de la méthode DejaVu
-            DejaVu dejaVuFromBdd1 = dejaVuManager.getDejaVu();
+            DejaVu dejaVuFromBdd1 = (DejaVu) dejaVuManager.getMethode(new DejaVu());
 
             //test si exist dans BD
-            flagBD = dejaVuManager.exist();
+            flagBD = dejaVuManager.exist(new DejaVu());
             if (flagBD) {
                 Log.v("exist", "TEST OK => EXISTE BIEN");
             }
@@ -65,10 +65,10 @@ public class TestDejaVuBDD extends AppCompatActivity {
                 Log.v("mdp avant", "=>" + dejaVuFromBdd1.getMdp());
 
                 //Test modification
-                dejaVuManager.updateDejaVu(dejaVuFromBdd1, 2, 2, 3f);
+                dejaVuManager.setStats(dejaVuFromBdd1, 2, 2, 3f);
 
                 //Re - Récupération
-                dejaVuFromBdd1 = dejaVuManager.getDejaVu();
+                dejaVuFromBdd1 = (DejaVu) dejaVuManager.getMethode(new DejaVu());
 
                 //vérif de la modification
 
@@ -83,7 +83,7 @@ public class TestDejaVuBDD extends AppCompatActivity {
                 dejaVuManager.setPassword(dejaVuFromBdd1, "coepDeLespace");
 
                 //Re - Récupération
-                dejaVuFromBdd1 = dejaVuManager.getDejaVu();
+                dejaVuFromBdd1 = (DejaVu) dejaVuManager.getMethode(new DejaVu());
 
                 //test si mot de passe par défault
                 flagPassword = dejaVuManager.defaultPassword(dejaVuFromBdd1);
@@ -97,7 +97,7 @@ public class TestDejaVuBDD extends AppCompatActivity {
             }
 
             //Suppression méthode 1
-            dejaVuManager.removeDejaVu(dejaVuFromBdd1);
+            dejaVuManager.removeMethode(dejaVuFromBdd1);
         }
 
 
