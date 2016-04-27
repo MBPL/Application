@@ -293,13 +293,9 @@ public class TabFragment1 extends Fragment {
                         startActivity(appel);
                     }
                 })
-
                 .setTitle(tab.get(j).getNom()).create();
 
-
         myAlert.show();
-        System.out.println("ofnoznfze");
-
 
     }
 }

@@ -1,5 +1,8 @@
 package mbpl.graphical.passwords;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import mbpl.graphical.passwords.passPoints.ChoixImage;
 import mbpl.graphical.passwords.sqlite.DejaVu;
 import mbpl.graphical.passwords.sqlite.MethodeManager;
 import mbpl.graphical.passwords.sqlite.Passfaces;
@@ -84,6 +88,24 @@ public class Accueil extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        String description = "Application développée dans le cadre de l'UE TER/PROJET : " +
+                "\"Usable Security - Secure Usability\", pour le M1 informatique de l'Université " +
+                "Paul Sabatier de Toulouse.\n\nAuteurs : \n - LACHERAY Benjamin\n " +
+                "- JEANMOUGIN Pierre\n - LE QUERE Lilian\n- MOUGEOT Matteo\n" +
+                "Remerciements à M. PALANQUE Philippe pour son encadrement.";
+
+        AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
+        myAlert.setMessage(description)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setTitle("A propos").create();
+
+        myAlert.show();
+
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;

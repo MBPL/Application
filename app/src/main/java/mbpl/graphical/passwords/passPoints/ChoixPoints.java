@@ -32,10 +32,9 @@ public class ChoixPoints extends AppCompatActivity {
     Bitmap bmp2;
     float touchX;
     float touchY;
-    float[] tabX = new float[50];
-    float[] tabY = new float[50];
+    List<Float> tabX = new ArrayList<Float>();
+    List<Float> tabY = new ArrayList<Float>();
     Bundle b22;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +84,8 @@ public class ChoixPoints extends AppCompatActivity {
                     case MotionEvent.ACTION_DOWN:
                         touchX = event.getX();
                         touchY = event.getY();
-                        tabX[number] = touchX;
-                        tabY[number] = touchY;
+                        tabX.add(touchX);
+                        tabY.add(touchY);
                         iv.setImageBitmap(drawCircle());
                         break;
                     default:
@@ -104,13 +103,13 @@ public class ChoixPoints extends AppCompatActivity {
                 Intent appel = new Intent(ChoixPoints.this, Deverouillage.class);
 
                 for (int i = 0; i < number; i++) {
-                    tabX[number + i] = tabY[i];
+                    tabX.add(tabY.get(i));
                 }
 
                 // On met les coordonnées X et Y et le nom de l'image à la suite dans un tableau.
                 List<String> myMdp = new ArrayList<String>();
                 for (int i = 0; i < number * 2; i++) {
-                    myMdp.add(String.valueOf(tabX[i]));
+                    myMdp.add(String.valueOf(tabX.get(i)));
                 }
                 myMdp.add(b22.getString("nomImage"));
 
