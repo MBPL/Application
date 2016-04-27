@@ -177,7 +177,7 @@ public abstract class GenericAuthentification extends AppCompatActivity {
             } else {
                 methodeManager.addTentativeEchouee(methode);
                 methodeManager.close();
-                Toast.makeText(GenericAuthentification.this, "Authentification échoué", Toast.LENGTH_LONG).show();
+                Toast.makeText(GenericAuthentification.this, "Authentification échouée", Toast.LENGTH_LONG).show();
                 inputMotDePasse.clear();
                 drawAndSetListeners(trueMotDePasse.get(inputMotDePasse.size()));
             }

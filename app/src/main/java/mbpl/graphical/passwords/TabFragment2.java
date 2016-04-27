@@ -16,7 +16,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.sqlite.DejaVu;
 import mbpl.graphical.passwords.sqlite.Methode;
 import mbpl.graphical.passwords.sqlite.MethodeManager;
@@ -26,23 +25,23 @@ import mbpl.graphical.passwords.sqlite.Passpoint;
 public class TabFragment2 extends Fragment {
 
     View rootView;
-    RelativeLayout rlf3;
-    ScrollView svf3;
-    HorizontalScrollView hsvf3;
-    GridLayout glf3;
+    RelativeLayout rlf2;
+    ScrollView svf2;
+    HorizontalScrollView hsvf2;
+    GridLayout glf2;
     TextView tv;
     GridLayout.LayoutParams p;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.menu_tab_fragment_3, container, false);
-        rlf3 = (RelativeLayout) rootView.findViewById(R.id.rlf3);
-        svf3 = (ScrollView) rootView.findViewById(R.id.svf3);
-        hsvf3 = (HorizontalScrollView) rootView.findViewById(R.id.hsvf3);
-        glf3 = (GridLayout) rootView.findViewById(R.id.glf3);
+        rootView = inflater.inflate(R.layout.menu_tab_fragment_2, container, false);
+        rlf2 = (RelativeLayout) rootView.findViewById(R.id.rlf2);
+        svf2 = (ScrollView) rootView.findViewById(R.id.svf2);
+        hsvf2 = (HorizontalScrollView) rootView.findViewById(R.id.hsvf2);
+        glf2 = (GridLayout) rootView.findViewById(R.id.glf2);
 
-        glf3.setRowCount(15);
-        glf3.setColumnCount(4);
+        glf2.setRowCount(15);
+        glf2.setColumnCount(4);
 
         Point size = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
@@ -81,7 +80,7 @@ public class TabFragment2 extends Fragment {
                         if (c == 0) {
                             tv.setText("Temps moyen");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getTemps_auth_moyen()));
+                            tv.setText(String.valueOf((float)((int)( methodeList.get(c - 1).getTemps_auth_moyen() *100f ))/100f));
                         }
                         break;
                     case 2:
@@ -101,15 +100,12 @@ public class TabFragment2 extends Fragment {
                 }
 
                 p = new GridLayout.LayoutParams();
-                //p.height = screenHeight / 6;
-                //p.width = screenWidth;
                 p.setMargins(10, 5, 10, 5);
                 p.setGravity(Gravity.CENTER);
                 p.columnSpec = GridLayout.spec(c);
                 p.rowSpec = GridLayout.spec(l);
                 tv.setLayoutParams(p);
-                //glf3.setBackgroundColor(Color.RED);
-                glf3.addView(tv);
+                glf2.addView(tv);
 
             }
         }
