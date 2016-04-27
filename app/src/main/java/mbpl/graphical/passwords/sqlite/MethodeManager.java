@@ -103,7 +103,7 @@ public class MethodeManager {
         int id = methode.getId();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + "=" + id, null);
 
-        return (c.getCount() > 1);
+        return (c.getCount() > 0);
     }
 
     /**

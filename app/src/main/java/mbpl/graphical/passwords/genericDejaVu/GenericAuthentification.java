@@ -21,25 +21,30 @@ import mbpl.graphical.passwords.utils.Tools;
 
 /**
  * Created by benja135 on 05/03/16.
- * Activité d'authentification de la méthode "Déjà Vu".
+ * Activité d'authentification des méthodes de type "Déjà Vu".
  */
-public class Authentification extends AppCompatActivity {
+public abstract class GenericAuthentification extends AppCompatActivity {
 
-    private int nbImage = 258;
-    private int tailleImage = 256;
+    // Variables protected à redéfinir dans chaque classe fille /!\
+    protected GenericAuthentification here = GenericAuthentification.this;
+    protected Class nextClass = mbpl.graphical.passwords.Accueil.class;
+    protected int nbImage = 258;
+    protected Methode methode;
+    protected int tailleImage = 256; // optionnel
+
     private int nbLigne = 6;
     private int nbColonne = 4;
     private MethodeManager methodeManager;
-    private Methode methode;
 
     private List<Integer> trueMotDePasse;
     private List<Integer> inputMotDePasse = new ArrayList<>();
     private long time;
 
-    protected void onCreate(Bundle savedInstanceState, int nbImage, Methode m) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         methodeManager = new MethodeManager(getApplicationContext());
         methodeManager.open();
-        methode = methodeManager.getMethode(m);
+        methode = methodeManager.getMethode(methode);
         trueMotDePasse = Tools.stringArrayToIntArray(methode.getMdp());
         int nbImageParPhase = methode.getNbImage();
         switch (nbImageParPhase) {
@@ -68,7 +73,7 @@ public class Authentification extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         drawAndSetListeners(trueMotDePasse.get(0));
-        Toast.makeText(Authentification.this, "Phase d'authentification", Toast.LENGTH_LONG).show();
+        Toast.makeText(GenericAuthentification.this, "Phase d'authentification", Toast.LENGTH_LONG).show();
         time = System.currentTimeMillis();
     }
 
@@ -164,15 +169,15 @@ public class Authentification extends AppCompatActivity {
             if (inputMotDePasse.equals(trueMotDePasse)) {
                 time = System.currentTimeMillis() - time; // temps de l'authentification
                 inputMotDePasse.clear();
-                Toast.makeText(Authentification.this, "Authentification OK !", Toast.LENGTH_LONG).show();
-                Intent accueil = new Intent(Authentification.this, mbpl.graphical.passwords.Accueil.class);
+                Toast.makeText(GenericAuthentification.this, "Authentification OK !", Toast.LENGTH_LONG).show();
+                Intent accueil = new Intent(here, nextClass);
                 methodeManager.addTentativeReussie(methode, (float) time / 1000);
                 methodeManager.close();
                 startActivity(accueil);
             } else {
                 methodeManager.addTentativeEchouee(methode);
                 methodeManager.close();
-                Toast.makeText(Authentification.this, "Authentification échoué", Toast.LENGTH_LONG).show();
+                Toast.makeText(GenericAuthentification.this, "Authentification échoué", Toast.LENGTH_LONG).show();
                 inputMotDePasse.clear();
                 drawAndSetListeners(trueMotDePasse.get(inputMotDePasse.size()));
             }
@@ -188,10 +193,7 @@ public class Authentification extends AppCompatActivity {
      * @param n numéro de l'image à récupérer
      * @return id identifiant de l'image
      */
-    protected int getDrawableN(int n) {
-        return getResources().getIdentifier("icon"
-                + tailleImage + "x" + tailleImage + "_" + n, "drawable", getPackageName());
-    }
+    protected abstract int getDrawableN(int n);
 
 
 }

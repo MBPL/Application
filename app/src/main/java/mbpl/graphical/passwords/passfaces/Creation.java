@@ -2,6 +2,7 @@ package mbpl.graphical.passwords.passfaces;
 
 import android.os.Bundle;
 
+import mbpl.graphical.passwords.genericDejaVu.GenericCreation;
 import mbpl.graphical.passwords.sqlite.Passfaces;
 
 
@@ -9,13 +10,15 @@ import mbpl.graphical.passwords.sqlite.Passfaces;
  * Created by benja135 on 26/04/16.
  * Activité de création de la méthode "passfaces".
  */
-public class Creation extends mbpl.graphical.passwords.genericDejaVu.Creation {
-
+public class Creation extends GenericCreation {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.here = Creation.this;
+        this.nextClass = mbpl.graphical.passwords.passfaces.Authentification.class;
+        this.nbImage = 20;
+        this.methode = new Passfaces();
         super.onCreate(savedInstanceState);
-        super.onCreate(savedInstanceState, 20, new Passfaces());
     }
 
     @Override

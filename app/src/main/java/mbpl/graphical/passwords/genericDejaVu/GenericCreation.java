@@ -22,12 +22,12 @@ import java.util.ArrayList;
 
 import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.customProgressBar.CustomProgress;
-import mbpl.graphical.passwords.sqlite.DejaVu;
 import mbpl.graphical.passwords.sqlite.Methode;
 import mbpl.graphical.passwords.sqlite.MethodeManager;
 
 /**
  * Created by benja135 on 05/03/16.
+ * Activité de création des méthodes de type "Déjà Vu".
  * - affiche tout les images de maniére ordonné dans une grille
  * - possibilité de scroller
  * - un clique sur une image l'ajoute à la liste des images choisies
@@ -35,25 +35,28 @@ import mbpl.graphical.passwords.sqlite.MethodeManager;
  * - passSize entre 1 et 12
  * - chargement avec un progress circle !
  */
-public class Creation extends AppCompatActivity {
+public abstract class GenericCreation extends AppCompatActivity {
 
-    private int nbImage;
-    private final int tailleImage = 96;
+    // Variables protected à redéfinir dans chaque classe fille /!\
+    protected GenericCreation here;
+    protected Class nextClass;
+    protected int nbImage;
+    protected int tailleImage = 96;
+    protected Methode methode;
+
     private final int nbColonne = 10;
     private final int minPassSize = 1;
     private final int maxPassSize = 12;
     private MethodeManager methodeManager;
-    private Methode methode;
 
     private GridLayout gridToolbar;
     private ArrayList pass = new ArrayList();
     ProgressDialog progressDialog;
 
 
-    protected void onCreate(Bundle savedInstanceState, int nbImg, Methode m) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         methodeManager = new MethodeManager(getApplicationContext());
-        methode = m;
-        nbImage = nbImg;
         Loading allTheDisplaying = new Loading();
         allTheDisplaying.execute();
     }
@@ -76,7 +79,7 @@ public class Creation extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = new ProgressDialog(Creation.this);
+            progressDialog = new ProgressDialog(GenericCreation.this);
             progressDialog.setMessage("Chargement...");
             progressDialog.setIndeterminate(true);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -137,14 +140,14 @@ public class Creation extends AppCompatActivity {
                         methode = methodeManager.getMethode(methode);
                         methodeManager.setPassword(methode, pass.toString());
                         methodeManager.close();
-                        Intent authentification = new Intent(Creation.this, Authentification.class);
+                        Intent authentification = new Intent(here, nextClass);
                         startActivity(authentification);
                     }
                 }
             });
 
             progressDialog.dismiss();
-            Toast.makeText(Creation.this, "Création. Essaye de scroller ! :)", Toast.LENGTH_LONG).show();
+            Toast.makeText(GenericCreation.this, "Création. Essaye de scroller ! :)", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -284,10 +287,7 @@ public class Creation extends AppCompatActivity {
      * @param n numéro de l'image à récupérer
      * @return id identifiant de l'image
      */
-    protected int getDrawableN(int n) {
-        return getResources().getIdentifier("icon"
-                + tailleImage + "x" + tailleImage + "_" + n, "drawable", getPackageName());
-    }
+    protected abstract int getDrawableN(int n);
 
 
     @Override
