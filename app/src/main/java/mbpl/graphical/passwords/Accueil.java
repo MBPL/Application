@@ -20,7 +20,10 @@ public class Accueil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        load();
+    }
 
+    private void load() {
         // On crée les tables en BDD si elles n'existent pas
         MethodeManager methodeManager = new MethodeManager(getApplicationContext());
         methodeManager.open();
@@ -67,6 +70,11 @@ public class Accueil extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        load();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
