@@ -4,6 +4,7 @@ package mbpl.graphical.passwords;
  * Created by pierre on 09/04/16.
  */
 
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,7 @@ public class TabFragment3 extends Fragment {
     RelativeLayout rlf3;
     ScrollView svf3;
     HorizontalScrollView hsvf3;
+    GridLayout glf3;
     TextView tv;
     GridLayout.LayoutParams p;
 
@@ -41,6 +43,10 @@ public class TabFragment3 extends Fragment {
         rlf3 = (RelativeLayout) rootView.findViewById(R.id.rlf3);
         svf3 = (ScrollView) rootView.findViewById(R.id.svf3);
         hsvf3 = (HorizontalScrollView) rootView.findViewById(R.id.hsvf3);
+        glf3 = (GridLayout) rootView.findViewById(R.id.glf3);
+
+        glf3.setRowCount(15);
+        glf3.setColumnCount(4);
 
 
         Point size = new Point();
@@ -52,23 +58,25 @@ public class TabFragment3 extends Fragment {
         DejaVu dv = new DejaVu();
         Passfaces pf = new Passfaces();
 
-        int i = 0;
         for (int c = 0; c < 4; c++) {
             for (int l = 0; l < 15; l++) {
-                final int j = i;
 
                 tv = new TextView(getActivity());
+
 
                 switch(l){
                     case 0:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getNom());
+                                tv.setText("Nom");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getNom());
+                                tv.setText(""+pp.getNom());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getNom());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getNom());
                                 break;
                         }
@@ -76,12 +84,15 @@ public class TabFragment3 extends Fragment {
                     case 1:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getCategorie());
+                                tv.setText("Categorie");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getCategorie());
+                                tv.setText(""+pp.getCategorie());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getCategorie());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getCategorie());
                                 break;
                         }
@@ -89,12 +100,15 @@ public class TabFragment3 extends Fragment {
                     case 2:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getBruteForce());
+                                tv.setText("BruteForceAttack");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getBruteForce());
+                                tv.setText(""+pp.getBruteForce());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getBruteForce());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getBruteForce());
                                 break;
                         }
@@ -102,12 +116,15 @@ public class TabFragment3 extends Fragment {
                     case 3:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getDictionaryAttack());
+                                tv.setText("DictionnaryAttack");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getDictionaryAttack());
+                                tv.setText(""+pp.getDictionaryAttack());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getDictionaryAttack());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getDictionaryAttack());
                                 break;
                         }
@@ -115,12 +132,15 @@ public class TabFragment3 extends Fragment {
                     case 4:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getShoulderSurfing());
+                                tv.setText("ShoulderSurfingAttack");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getShoulderSurfing());
+                                tv.setText(""+pp.getShoulderSurfing());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getShoulderSurfing());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getShoulderSurfing());
                                 break;
                         }
@@ -128,12 +148,15 @@ public class TabFragment3 extends Fragment {
                     case 5:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getSmudgeAttack());
+                                tv.setText("SmudgeAttack");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getSmudgeAttack());
+                                tv.setText(""+pp.getSmudgeAttack());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getSmudgeAttack());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getSmudgeAttack());
                                 break;
                         }
@@ -141,12 +164,15 @@ public class TabFragment3 extends Fragment {
                     case 6:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getEyeTracking());
+                                tv.setText("EyeTrackingAttack");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getEyeTracking());
+                                tv.setText(""+pp.getEyeTracking());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getEyeTracking());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getEyeTracking());
                                 break;
                         }
@@ -154,12 +180,15 @@ public class TabFragment3 extends Fragment {
                     case 7:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getSpyWare());
+                                tv.setText("SpyWareAttack");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getSpyWare());
+                                tv.setText(""+pp.getSpyWare());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getSpyWare());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getSpyWare());
                                 break;
                         }
@@ -167,12 +196,15 @@ public class TabFragment3 extends Fragment {
                     case 8:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getEspaceMdp());
+                                tv.setText("EspaceMDP");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getEspaceMdp());
+                                tv.setText(""+pp.getEspaceMdp());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getEspaceMdp());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getEspaceMdp());
                                 break;
                         }
@@ -180,12 +212,15 @@ public class TabFragment3 extends Fragment {
                     case 9:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getIndiceSecurite());
+                                tv.setText("IndiceSecurite");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getIndiceSecurite());
+                                tv.setText(""+pp.getIndiceSecurite());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getIndiceSecurite());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getIndiceSecurite());
                                 break;
                         }
@@ -193,12 +228,15 @@ public class TabFragment3 extends Fragment {
                     case 10:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getApprentissage());
+                                tv.setText("Apprentissage");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getApprentissage());
+                                tv.setText(""+pp.getApprentissage());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getApprentissage());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getApprentissage());
                                 break;
                         }
@@ -206,12 +244,15 @@ public class TabFragment3 extends Fragment {
                     case 11:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getMemorisation());
+                                tv.setText("Memorisation");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getMemorisation());
+                                tv.setText(""+pp.getMemorisation());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getMemorisation());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getMemorisation());
                                 break;
                         }
@@ -219,12 +260,15 @@ public class TabFragment3 extends Fragment {
                     case 12:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getTemps());
+                                tv.setText("Temps");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getTemps());
+                                tv.setText(""+pp.getTemps());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getTemps());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getTemps());
                                 break;
                         }
@@ -232,12 +276,15 @@ public class TabFragment3 extends Fragment {
                     case 13:
                         switch(c) {
                             case 0:
-                                tv.setText(""+pp.getSatisfaction());
+                                tv.setText("Satisfaction");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getSatisfaction());
+                                tv.setText(""+pp.getSatisfaction());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getSatisfaction());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getSatisfaction());
                                 break;
                         }
@@ -245,12 +292,15 @@ public class TabFragment3 extends Fragment {
                     case 14:
                         switch(c) {
                             case 0:
-                                tv.setText("" + pp.getIndiceUtilisabilite());
+                                tv.setText("IndiceUtilisabilite");
                                 break;
                             case 1:
-                                tv.setText(""+dv.getIndiceUtilisabilite());
+                                tv.setText("" + pp.getIndiceUtilisabilite());
                                 break;
                             case 2:
+                                tv.setText(""+dv.getIndiceUtilisabilite());
+                                break;
+                            case 3:
                                 tv.setText(""+pf.getIndiceUtilisabilite());
                                 break;
                         }
@@ -260,14 +310,16 @@ public class TabFragment3 extends Fragment {
 
 
                 p = new GridLayout.LayoutParams();
-                p.height = screenHeight / 6;
-                p.width = screenWidth;
-                p.setMargins(0, 0, 0, 0);
+                //p.height = screenHeight / 6;
+                //p.width = screenWidth;
+                p.setMargins(10, 5, 10, 5);
                 p.setGravity(Gravity.CENTER);
                 p.columnSpec = GridLayout.spec(c);
                 p.rowSpec = GridLayout.spec(l);
                 tv.setLayoutParams(p);
-                rlf3.addView(tv);
+                //glf3.setBackgroundColor(Color.RED);
+                glf3.addView(tv);
+
             }
         }
 
