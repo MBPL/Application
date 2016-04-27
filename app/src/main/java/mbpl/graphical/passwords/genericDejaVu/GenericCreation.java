@@ -41,10 +41,10 @@ public abstract class GenericCreation extends AppCompatActivity {
     protected GenericCreation here;
     protected Class nextClass;
     protected int nbImage;
-    protected int tailleImage = 96;
     protected Methode methode;
+    protected int tailleImage = 96; // optionnel
+    protected int nbColonne = 10; // optionnel
 
-    private final int nbColonne = 10;
     private final int minPassSize = 1;
     private final int maxPassSize = 12;
     private MethodeManager methodeManager;
@@ -147,7 +147,7 @@ public abstract class GenericCreation extends AppCompatActivity {
             });
 
             progressDialog.dismiss();
-            Toast.makeText(GenericCreation.this, "Création. Essaye de scroller ! :)", Toast.LENGTH_LONG).show();
+            Toast.makeText(GenericCreation.this, "Créez votre mot de passe ! :)", Toast.LENGTH_LONG).show();
         }
     }
 

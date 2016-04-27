@@ -252,6 +252,27 @@ public class TabFragment1 extends Fragment {
                         startActivity(appel);
                     }
                 })
+                .setNegativeButton("Essayer !", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent appel;
+                        switch (tab.get(j).getNom()) {
+                            case "Passpoints":
+                                appel = new Intent(getActivity(), ChoixImage.class);
+                                break;
+                            case "Déjà Vu":
+                                appel = new Intent(getActivity(), mbpl.graphical.passwords.dejaVu.Accueil.class);
+                                break;
+                            case "Passfaces":
+                                appel = new Intent(getActivity(), mbpl.graphical.passwords.passfaces.Creation.class);
+                                break;
+                            default:
+                                appel = new Intent(getActivity(), ChoixImage.class);
+                                break;
+                        }
+                        startActivity(appel);
+                    }
+                })
                 .setTitle(tab.get(j).getNom())
                 .create();
         myAlert.show();

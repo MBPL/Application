@@ -18,6 +18,7 @@ public class Creation extends GenericCreation {
         this.nextClass = mbpl.graphical.passwords.passfaces.Authentification.class;
         this.nbImage = 20;
         this.methode = new Passfaces();
+        this.nbColonne = 5;
         super.onCreate(savedInstanceState);
     }
 

@@ -28,7 +28,7 @@ public abstract class GenericAuthentification extends AppCompatActivity {
     // Variables protected à redéfinir dans chaque classe fille /!\
     protected GenericAuthentification here = GenericAuthentification.this;
     protected Class nextClass = mbpl.graphical.passwords.Accueil.class;
-    protected int nbImage = 258;
+    protected int nbImage;
     protected Methode methode;
     protected int tailleImage = 256; // optionnel
 
