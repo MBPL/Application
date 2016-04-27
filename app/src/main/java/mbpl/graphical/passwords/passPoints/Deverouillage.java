@@ -16,12 +16,15 @@ import android.widget.Toast;
 
 import mbpl.graphical.passwords.Accueil;
 import mbpl.graphical.passwords.R;
+import mbpl.graphical.passwords.sqlite.Methode;
+import mbpl.graphical.passwords.sqlite.MethodeManager;
+import mbpl.graphical.passwords.sqlite.Passpoint;
+import mbpl.graphical.passwords.utils.Tools;
 
 public class Deverouillage extends AppCompatActivity {
 
-    Bundle b33;
-    float[] tabX = new float[50];
-    float[] tabY = new float[50];
+    Float[] tabX = new Float[50];
+    Float[] tabY = new Float[50];
     Integer number;
     String nomImage;
 
@@ -31,7 +34,6 @@ public class Deverouillage extends AppCompatActivity {
     float touchX;
     float touchY;
     Integer currentNumber = 0;
-    Integer nbrEssais = 1;
 
     float startTime;
     float difference;
@@ -41,11 +43,26 @@ public class Deverouillage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.passpoints__deverouillage);
 
-        b33 = getIntent().getExtras();
-        tabX = b33.getFloatArray("tabX");
-        tabY = b33.getFloatArray("tabY");
-        number = b33.getInt("number");
-        nomImage = b33.getString("nomImage");
+        /**** Récupére les infos dans la BDD ****/
+        MethodeManager methodeManager = new MethodeManager(getApplicationContext());
+        methodeManager.open();
+        Methode methode = methodeManager.getMethode(new Passpoint());
+        methodeManager.close();
+
+        String[] motDePasse = Tools.stringToStringTable(methode.getMdp());
+        System.out.println("Avant : " + methode.getMdp());
+
+        number = (motDePasse.length - 1) / 2;
+        for (int i = 0; i < number; i++) {
+            tabX[i] = Float.parseFloat(motDePasse[i]);
+            tabY[i] = Float.parseFloat(motDePasse[i+number]);
+        }
+        nomImage = motDePasse[number * 2];
+
+
+
+
+        /**** ***************************** ****/
 
         iv = (ImageView) findViewById(R.id.imageviewMain);
 
@@ -86,18 +103,26 @@ public class Deverouillage extends AppCompatActivity {
                                 if (currentNumber == number) {
                                     difference = System.nanoTime() - startTime;
                                     difference = difference / 1000000000;
+
+                                    MethodeManager methodeManager = new MethodeManager(getApplicationContext());
+                                    methodeManager.open();
+                                    Methode methode = methodeManager.getMethode(new Passpoint());
+                                    methodeManager.addTentativeReussie(methode, difference);
+                                    methodeManager.close();
+
                                     Toast.makeText(Deverouillage.this, "Mot de passe validé !", Toast.LENGTH_SHORT).show();
                                     Intent appel = new Intent(Deverouillage.this, Accueil.class);
-                                    Bundle bStats = new Bundle();
-                                    bStats.putInt("nbrEssais", nbrEssais);
-                                    bStats.putString("nomMDP", "Passpoints");
-                                    bStats.putFloat("tempsDeverouillage", difference);
-                                    appel.putExtras(bStats);
                                     startActivity(appel);
                                 }
                             } else {
                                 currentNumber = 0;
-                                nbrEssais++;
+
+                                MethodeManager methodeManager = new MethodeManager(getApplicationContext());
+                                methodeManager.open();
+                                Methode methode = methodeManager.getMethode(new Passpoint());
+                                methodeManager.addTentativeEchouee(methode);
+                                methodeManager.close();
+
                                 Toast.makeText(Deverouillage.this, "Mot de passe incorrect\nVeuillez recommencer", Toast.LENGTH_SHORT).show();
                             }
                         }

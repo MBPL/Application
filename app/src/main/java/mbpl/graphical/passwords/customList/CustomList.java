@@ -15,6 +15,7 @@ import android.widget.TextView;
 import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.customProgressBar.CustomProgress;
 import mbpl.graphical.passwords.sqlite.DejaVu;
+import mbpl.graphical.passwords.sqlite.Passfaces;
 import mbpl.graphical.passwords.sqlite.Passpoint;
 
 /**
@@ -59,11 +60,11 @@ public class CustomList extends ArrayAdapter<String> {
                 u = (float) dv.getIndiceUtilisabilite();
                 s = (float) dv.getIndiceSecurite();
                 break;
-            /*case "Passfaces":
+            case "Passfaces":
                 Passfaces pf = new Passfaces();
                 u = (float) pf.getIndiceUtilisabilite();
                 s = (float) pf.getIndiceSecurite();
-                break;*/
+                break;
             default:
                 u = (float) 5.0f;
                 s = (float) 5.0f;

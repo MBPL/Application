@@ -30,7 +30,14 @@ import android.widget.Toast;
 
 import mbpl.graphical.passwords.customList.CustomList;
 import mbpl.graphical.passwords.customProgressBar.CustomProgress;
+import mbpl.graphical.passwords.dejaVu.Authentification;
 import mbpl.graphical.passwords.passPoints.ChoixImage;
+import mbpl.graphical.passwords.passPoints.Deverouillage;
+import mbpl.graphical.passwords.sqlite.DejaVu;
+import mbpl.graphical.passwords.sqlite.Methode;
+import mbpl.graphical.passwords.sqlite.MethodeManager;
+import mbpl.graphical.passwords.sqlite.Passfaces;
+import mbpl.graphical.passwords.sqlite.Passpoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,8 +66,6 @@ public class TabFragment1 extends Fragment {
         mdpLV = (ListView) rootView.findViewById(R.id.mdpListView);
 
 
-
-
         String descPasspoints = "- Choisir une image.\n- Choisir au moins un point à repérer sur cette image.\n- Faire 'Suivant'.\n- Retrouver ces points.";
         String descDejaVu = "- Choisir une suite d'images.\n" +
                 "- Appuyer sur 'Valider'.\n" +
@@ -72,17 +77,12 @@ public class TabFragment1 extends Fragment {
         tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, 1, 0, 0));
         tab.add(new TypeAuthentification("Déjà Vu", "icon96x96_2", descDejaVu, 2, 0, 0));
         tab.add(new TypeAuthentification("Passfaces", "icon96x96_3", descPassfaces, 3, 0, 0));
-        tab.add(new TypeAuthentification("mdp4", "icon96x96_4", "d", 4, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
-        tab.add(new TypeAuthentification("mdp5", "icon96x96_5", "d", 5, 0, 0));
+        tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, 1, 0, 0));
+        tab.add(new TypeAuthentification("Déjà Vu", "icon96x96_2", descDejaVu, 2, 0, 0));
+        tab.add(new TypeAuthentification("Passfaces", "icon96x96_3", descPassfaces, 3, 0, 0));
+        tab.add(new TypeAuthentification("Passpoints", "passpoints96x96", descPasspoints, 1, 0, 0));
+        tab.add(new TypeAuthentification("Déjà Vu", "icon96x96_2", descDejaVu, 2, 0, 0));
+        tab.add(new TypeAuthentification("Passfaces", "icon96x96_3", descPassfaces, 3, 0, 0));
 
 
         Point size = new Point();
@@ -96,7 +96,7 @@ public class TabFragment1 extends Fragment {
         for (int i = 0; i < tab.size(); i++) {
             final int j = i;*/
 
-            //Toast.makeText(Accueil.this, "" + myLayout_tab1.getColumnCount(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Accueil.this, "" + myLayout_tab1.getColumnCount(), Toast.LENGTH_SHORT).show();
 
 
             /*bmp = decodeSampledBitmapFromResource(getResources(), getID_MDP(i, tab.get(i)), 400, 400);
@@ -151,7 +151,7 @@ public class TabFragment1 extends Fragment {
 
         ListView list;
         final String[] listeNomsMdp = new String[tab.size()];
-        for(int m=0; m<tab.size(); m++) {
+        for (int m = 0; m < tab.size(); m++) {
             listeNomsMdp[m] = tab.get(m).getNom();
         }
         int sec = 3;
@@ -168,10 +168,7 @@ public class TabFragment1 extends Fragment {
         });
 
 
-
-
-
-            //l++;
+        //l++;
         //}
 
         return rootView;
@@ -229,6 +226,8 @@ public class TabFragment1 extends Fragment {
     }
 
     public void showAlertDescription(View v, final int j) {
+
+
         AlertDialog.Builder myAlert = new AlertDialog.Builder(getActivity());
         myAlert.setMessage(tab.get(j).getDesc())
                 .setPositiveButton("Essayer !", new DialogInterface.OnClickListener() {
@@ -249,34 +248,58 @@ public class TabFragment1 extends Fragment {
                                 appel = new Intent(getActivity(), ChoixImage.class);
                                 break;
                         }
+
                         startActivity(appel);
                     }
                 })
-                .setNegativeButton("Essayer !", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Reprendre", new DialogInterface.OnClickListener() {
+
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent appel;
+                        Methode m;
+                        MethodeManager mm = new MethodeManager(getContext());
+                        mm.open();
                         switch (tab.get(j).getNom()) {
                             case "Passpoints":
-                                appel = new Intent(getActivity(), ChoixImage.class);
+                                m = mm.getMethode(new Passpoint());
+                                if (!mm.defaultPassword(m)) {
+                                    appel = new Intent(getActivity(), Deverouillage.class);
+                                } else {
+                                    appel = new Intent(getActivity(), ChoixImage.class);
+                                }
                                 break;
                             case "Déjà Vu":
-                                appel = new Intent(getActivity(), mbpl.graphical.passwords.dejaVu.Accueil.class);
+                                m = mm.getMethode(new DejaVu());
+                                if (mm.defaultPassword(m)) {
+                                    appel = new Intent(getActivity(), mbpl.graphical.passwords.dejaVu.Accueil.class);
+                                } else {
+                                    appel = new Intent(getActivity(), Authentification.class);
+                                }
                                 break;
                             case "Passfaces":
-                                appel = new Intent(getActivity(), mbpl.graphical.passwords.passfaces.Creation.class);
+                                m = mm.getMethode(new Passfaces());
+                                if (mm.defaultPassword(m)) {
+                                    appel = new Intent(getActivity(), mbpl.graphical.passwords.passfaces.Creation.class);
+                                } else {
+                                    appel = new Intent(getActivity(), mbpl.graphical.passwords.passfaces.Authentification.class);
+                                }
                                 break;
                             default:
                                 appel = new Intent(getActivity(), ChoixImage.class);
                                 break;
                         }
+                        mm.close();
                         startActivity(appel);
                     }
                 })
-                .setTitle(tab.get(j).getNom())
-                .create();
+
+                .setTitle(tab.get(j).getNom()).create();
+
+
         myAlert.show();
+        System.out.println("ofnoznfze");
+
+
     }
-
-
 }

@@ -16,7 +16,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mbpl.graphical.passwords.R;
+import mbpl.graphical.passwords.sqlite.MethodeManager;
+import mbpl.graphical.passwords.sqlite.Passpoint;
 
 public class ChoixPoints extends AppCompatActivity {
 
@@ -98,13 +103,21 @@ public class ChoixPoints extends AppCompatActivity {
             public void onClick(View v) {
                 Intent appel = new Intent(ChoixPoints.this, Deverouillage.class);
 
-                Bundle b3 = new Bundle();
-                b3.putFloatArray("tabX", tabX);
-                b3.putFloatArray("tabY", tabY);
-                b3.putInt("number", number);
-                b3.putString("nomImage", b22.getString("nomImage"));
+                for (int i = 0; i < number; i++) {
+                    tabX[number + i] = tabY[i];
+                }
 
-                appel.putExtras(b3);
+                // On met les coordonnées X et Y et le nom de l'image à la suite dans un tableau.
+                List<String> myMdp = new ArrayList<String>();
+                for (int i = 0; i < number * 2; i++) {
+                    myMdp.add(String.valueOf(tabX[i]));
+                }
+                myMdp.add(b22.getString("nomImage"));
+
+                MethodeManager mm = new MethodeManager(getApplicationContext());
+                mm.open();
+                mm.setPassword(new Passpoint(), myMdp.toString());
+                mm.close();
 
                 startActivity(appel);
             }

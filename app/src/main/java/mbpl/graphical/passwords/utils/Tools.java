@@ -35,6 +35,10 @@ public abstract class Tools {
     }
 
 
+    public static String[] stringToStringTable(String pass) {
+        return pass.replaceAll("\\[", "").replaceAll(" ", "").replaceAll("\\]", "").split(",");
+    }
+
     /**
      * Retourne un nombre aléatoire entre min et max.
      *
