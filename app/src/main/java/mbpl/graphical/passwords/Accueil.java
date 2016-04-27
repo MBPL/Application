@@ -91,7 +91,7 @@ public class Accueil extends AppCompatActivity {
         String description = "Application développée dans le cadre de l'UE TER/PROJET : " +
                 "\"Usable Security - Secure Usability\", pour le M1 informatique de l'Université " +
                 "Paul Sabatier de Toulouse.\n\nAuteurs : \n - LACHERAY Benjamin\n " +
-                "- JEANMOUGIN Pierre\n - LE QUERE Lilian\n- MOUGEOT Matteo\n" +
+                "- JEANMOUGIN Pierre\n - LE QUERE Lilian\n - MOUGEOT Matteo\n" +
                 "Remerciements à M. PALANQUE Philippe pour son encadrement.";
 
         AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
