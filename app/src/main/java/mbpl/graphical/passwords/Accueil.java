@@ -11,8 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mbpl.graphical.passwords.passPoints.ChoixImage;
 import mbpl.graphical.passwords.sqlite.DejaVu;
+import mbpl.graphical.passwords.sqlite.Methode;
 import mbpl.graphical.passwords.sqlite.MethodeManager;
 import mbpl.graphical.passwords.sqlite.Passfaces;
 import mbpl.graphical.passwords.sqlite.Passpoint;
@@ -28,17 +32,21 @@ public class Accueil extends AppCompatActivity {
     }
 
     private void load() {
-        // On crée les tables en BDD si elles n'existent pas
+
         MethodeManager methodeManager = new MethodeManager(getApplicationContext());
         methodeManager.open();
-        if (!methodeManager.exist(new DejaVu())) {
-            methodeManager.addMethode(new DejaVu());
-        }
-        if (!methodeManager.exist(new Passpoint())) {
-            methodeManager.addMethode(new Passpoint());
-        }
-        if (!methodeManager.exist(new Passfaces())) {
-            methodeManager.addMethode(new Passfaces());
+
+        // TODO AJOUTER VOTRE METHODE A CETTE LISTE (une ligne à ajouter)
+        List<Methode> methodeList = new ArrayList<Methode>();
+        methodeList.add(new Passpoint());
+        methodeList.add(new DejaVu());
+        methodeList.add(new Passfaces());
+
+        // On crée les tables en BDD si elles n'existent pas encore
+        for (int i = 0; i < methodeList.size(); i++) {
+            if (!methodeManager.exist(methodeList.get(i))) {
+                methodeManager.addMethode(methodeList.get(i));
+            }
         }
         methodeManager.close();
 

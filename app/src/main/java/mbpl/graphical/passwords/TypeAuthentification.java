@@ -1,37 +1,26 @@
 package mbpl.graphical.passwords;
 
-import android.graphics.Color;
+import mbpl.graphical.passwords.sqlite.Methode;
 
 /**
  * Created by pierre on 01/03/16.
  */
 public class TypeAuthentification {
 
+    private String nom;
+    private String desc;
+    private int numeroID;
+    private Class creation;
+    private Class authentification;
+    private Methode methode;
 
-    String nom;
-    String image;
-    String desc;
-    int color;
-    int numeroID;
-    int security;
-    int utilisability;
-
-    public TypeAuthentification(String nom, String image, String desc, int numeroID, int utilisability, int security) {
+    public TypeAuthentification(String nom, String desc, int numeroID, Class creation, Class authentification, Methode m) {
         this.nom = nom;
-        this.image = image;
         this.desc = desc;
-        this.color = color;
         this.numeroID = numeroID;
-        this.utilisability = utilisability;
-        this.security = security;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
+        this.creation = creation;
+        this.authentification = authentification;
+        this.methode = m;
     }
 
     public String getDesc() {
@@ -42,36 +31,12 @@ public class TypeAuthentification {
         this.desc = desc;
     }
 
-    public int getSecurity() {
-        return security;
-    }
-
-    public void setSecurity(int security) {
-        this.security = security;
-    }
-
-    public int getUtilisability() {
-        return utilisability;
-    }
-
-    public void setUtilisability(int utilisability) {
-        this.utilisability = utilisability;
-    }
-
     public String getNom() {
         return nom;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public int getNumeroID() {
@@ -82,5 +47,15 @@ public class TypeAuthentification {
         this.numeroID = numeroID;
     }
 
+    public Class getCreation() {
+        return creation;
+    }
 
+    public Class getAuthentification() {
+        return authentification;
+    }
+
+    public Methode getMethode() {
+        return methode;
+    }
 }

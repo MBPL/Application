@@ -49,19 +49,19 @@ public class TabFragment2 extends Fragment {
         MethodeManager methodeManager = new MethodeManager(getContext());
         methodeManager.open();
 
+        // TODO AJOUTER VOTRE METHODE A CETTE LISTE (une ligne à ajouter)
         List<Methode> methodeList = new ArrayList<Methode>();
+        methodeList.add(new Passpoint());
+        methodeList.add(new DejaVu());
+        methodeList.add(new Passfaces());
 
-        if (methodeManager.exist(new Passpoint())) {
-            methodeList.add(methodeManager.getMethode(new Passpoint()));
-        }
-        if (methodeManager.exist(new DejaVu())) {
-            methodeList.add(methodeManager.getMethode(new DejaVu()));
-        }
-        if (methodeManager.exist(new Passfaces())) {
-            methodeList.add(methodeManager.getMethode(new Passfaces()));
+        List<Methode> trueMethodeList = new ArrayList<Methode>();
+        for (int i = 0; i < methodeList.size(); i++) {
+            if (methodeManager.exist(methodeList.get(i))) {
+                trueMethodeList.add(methodeManager.getMethode(methodeList.get(i)));
+            }
         }
         methodeManager.close();
-
 
         for (int c = 0; c < methodeList.size() + 1; c++) {
             for (int l = 0; l < 4; l++) {

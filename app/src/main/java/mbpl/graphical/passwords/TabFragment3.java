@@ -51,12 +51,13 @@ public class TabFragment3 extends Fragment {
         Point size = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
 
+        // TODO AJOUTER VOTRE METHODE A CETTE LISTE (une ligne à ajouter)
         List<Methode> methodeList = new ArrayList<Methode>();
         methodeList.add(new Passpoint());
         methodeList.add(new DejaVu());
         methodeList.add(new Passfaces());
 
-        for (int c = 0; c < 4; c++) {
+        for (int c = 0; c < methodeList.size() + 1; c++) {
             for (int l = 0; l < 15; l++) {
 
                 tv = new TextView(getActivity());
