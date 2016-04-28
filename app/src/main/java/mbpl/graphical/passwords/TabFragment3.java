@@ -39,13 +39,14 @@ public class TabFragment3 extends Fragment {
         hsvf3 = (HorizontalScrollView) rootView.findViewById(R.id.hsvf3);
         glf3 = (GridLayout) rootView.findViewById(R.id.glf3);
 
-        glf3.setRowCount(15);
-        glf3.setColumnCount(4);
-
         Point size = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
 
-        for (int c = 0; c < implementedMethods.size() + 1; c++) {
+        int columnCount = implementedMethods.size() + 1;
+        glf3.setRowCount(15);
+        glf3.setColumnCount(columnCount);
+
+        for (int c = 0; c < columnCount; c++) {
             for (int l = 0; l < 15; l++) {
 
                 tv = new TextView(getActivity());

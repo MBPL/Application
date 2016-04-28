@@ -39,9 +39,6 @@ public class TabFragment2 extends Fragment {
         hsvf2 = (HorizontalScrollView) rootView.findViewById(R.id.hsvf2);
         glf2 = (GridLayout) rootView.findViewById(R.id.glf2);
 
-        glf2.setRowCount(15);
-        glf2.setColumnCount(4);
-
         Point size = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
 
@@ -56,7 +53,11 @@ public class TabFragment2 extends Fragment {
         }
         methodeManager.close();
 
-        for (int c = 0; c < trueMethodeList.size() + 1; c++) {
+        int columnCount = trueMethodeList.size() + 1;
+        glf2.setRowCount(4);
+        glf2.setColumnCount(columnCount);
+
+        for (int c = 0; c < columnCount; c++) {
             for (int l = 0; l < 4; l++) {
 
                 tv = new TextView(getActivity());
