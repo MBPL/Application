@@ -21,7 +21,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import mbpl.graphical.passwords.R;
-import mbpl.graphical.passwords.customProgressBar.CustomProgress;
+import mbpl.graphical.passwords.utils.CustomProgress;
 import mbpl.graphical.passwords.sqlite.Methode;
 import mbpl.graphical.passwords.sqlite.MethodeManager;
 
@@ -215,7 +215,7 @@ public abstract class GenericCreation extends AppCompatActivity {
     private void drawGridToolbar() {
 
         CustomProgress secureProgress = (CustomProgress) findViewById(R.id.customProgressSecure);
-        secureProgress.setMaximumPercentage(((float) pass.size()) / ((float) maxPassSize)); // TODO faire une vraie formule basé sur l'espace de mot de passe
+        secureProgress.setMaximumPercentage(((float) pass.size()) / ((float) maxPassSize));
         secureProgress.setProgressColor(ContextCompat.getColor(this, R.color.blue_500));
         secureProgress.setProgressBackgroundColor(ContextCompat.getColor(this, R.color.blue_200));
         secureProgress.setText(R.string.security);

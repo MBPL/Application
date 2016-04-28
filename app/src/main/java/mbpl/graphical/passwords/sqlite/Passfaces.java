@@ -1,5 +1,8 @@
 package mbpl.graphical.passwords.sqlite;
 
+import mbpl.graphical.passwords.passfaces.Authentification;
+import mbpl.graphical.passwords.passfaces.Creation;
+
 /**
  * Created by Matteo on 26/04/2016.
  * Methode Passfaces.
@@ -8,6 +11,11 @@ public class Passfaces extends Methode {
 
     public Passfaces() {
         this.id = 3;
+        this.creation = Creation.class;
+        this.authentification = Authentification.class;
+        this.description = "- Choisir une suite d'images.\n" +
+                "- Appuyer sur 'Valider'.\n" +
+                "- Cliquer sur les images dans l'ordre pour vous authentifier.";
         this.nom = "Passfaces";
         this.categorie = "reconnaissance";
         this.bruteForce = 0;
@@ -29,8 +37,8 @@ public class Passfaces extends Methode {
         this.temps_auth_moyen = 0f;
         this.mdp = "";
 
-        this.nbImage = 9;
-        this.doublon = 0;
+        this.param1 = 9;
+        this.param2 = 0;
     }
 
 }

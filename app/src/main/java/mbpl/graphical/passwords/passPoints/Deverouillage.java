@@ -18,7 +18,7 @@ import mbpl.graphical.passwords.Accueil;
 import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.sqlite.Methode;
 import mbpl.graphical.passwords.sqlite.MethodeManager;
-import mbpl.graphical.passwords.sqlite.Passpoint;
+import mbpl.graphical.passwords.sqlite.Passpoints;
 import mbpl.graphical.passwords.utils.Tools;
 
 public class Deverouillage extends AppCompatActivity {
@@ -46,7 +46,7 @@ public class Deverouillage extends AppCompatActivity {
         /**** Récupére les infos dans la BDD ****/
         MethodeManager methodeManager = new MethodeManager(getApplicationContext());
         methodeManager.open();
-        Methode methode = methodeManager.getMethode(new Passpoint());
+        Methode methode = methodeManager.getMethode(new Passpoints());
         methodeManager.close();
 
         String[] motDePasse = Tools.stringToStringTable(methode.getMdp());
@@ -106,7 +106,7 @@ public class Deverouillage extends AppCompatActivity {
 
                                     MethodeManager methodeManager = new MethodeManager(getApplicationContext());
                                     methodeManager.open();
-                                    Methode methode = methodeManager.getMethode(new Passpoint());
+                                    Methode methode = methodeManager.getMethode(new Passpoints());
                                     methodeManager.addTentativeReussie(methode, difference);
                                     methodeManager.close();
 
@@ -119,7 +119,7 @@ public class Deverouillage extends AppCompatActivity {
 
                                 MethodeManager methodeManager = new MethodeManager(getApplicationContext());
                                 methodeManager.open();
-                                Methode methode = methodeManager.getMethode(new Passpoint());
+                                Methode methode = methodeManager.getMethode(new Passpoints());
                                 methodeManager.addTentativeEchouee(methode);
                                 methodeManager.close();
 

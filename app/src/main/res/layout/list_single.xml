@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/grey_500"/>
 
-        <mbpl.graphical.passwords.customProgressBar.CustomProgress
+        <mbpl.graphical.passwords.utils.CustomProgress
             android:id="@+id/customProgressUsability"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             android:layout_marginRight="30dp"
             />
 
-        <mbpl.graphical.passwords.customProgressBar.CustomProgress
+        <mbpl.graphical.passwords.utils.CustomProgress
             android:id="@+id/customProgressSecurity"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

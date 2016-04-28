@@ -16,11 +16,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import mbpl.graphical.passwords.sqlite.DejaVu;
 import mbpl.graphical.passwords.sqlite.Methode;
 import mbpl.graphical.passwords.sqlite.MethodeManager;
-import mbpl.graphical.passwords.sqlite.Passfaces;
-import mbpl.graphical.passwords.sqlite.Passpoint;
+
+import static mbpl.graphical.passwords.ImplementedMethods.implementedMethods;
 
 public class TabFragment2 extends Fragment {
 
@@ -49,21 +48,15 @@ public class TabFragment2 extends Fragment {
         MethodeManager methodeManager = new MethodeManager(getContext());
         methodeManager.open();
 
-        // TODO AJOUTER VOTRE METHODE A CETTE LISTE (une ligne à ajouter)
-        List<Methode> methodeList = new ArrayList<Methode>();
-        methodeList.add(new Passpoint());
-        methodeList.add(new DejaVu());
-        methodeList.add(new Passfaces());
-
         List<Methode> trueMethodeList = new ArrayList<Methode>();
-        for (int i = 0; i < methodeList.size(); i++) {
-            if (methodeManager.exist(methodeList.get(i))) {
-                trueMethodeList.add(methodeManager.getMethode(methodeList.get(i)));
+        for (int i = 0; i < implementedMethods.size(); i++) {
+            if (methodeManager.exist(implementedMethods.get(i))) {
+                trueMethodeList.add(methodeManager.getMethode(implementedMethods.get(i)));
             }
         }
         methodeManager.close();
 
-        for (int c = 0; c < methodeList.size() + 1; c++) {
+        for (int c = 0; c < trueMethodeList.size() + 1; c++) {
             for (int l = 0; l < 4; l++) {
 
                 tv = new TextView(getActivity());
@@ -73,28 +66,28 @@ public class TabFragment2 extends Fragment {
                         if (c == 0) {
                             tv.setText("Nom");
                         } else {
-                            tv.setText(methodeList.get(c - 1).getNom());
+                            tv.setText(trueMethodeList.get(c - 1).getNom());
                         }
                         break;
                     case 1:
                         if (c == 0) {
                             tv.setText("Temps moyen");
                         } else {
-                            tv.setText(String.valueOf((float)((int)( methodeList.get(c - 1).getTemps_auth_moyen() *100f ))/100f));
+                            tv.setText(String.valueOf((float) ((int) (trueMethodeList.get(c - 1).getTemps_auth_moyen() * 100f)) / 100f));
                         }
                         break;
                     case 2:
                         if (c == 0) {
                             tv.setText("Echecs");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getNb_tentative_echouee()));
+                            tv.setText(String.valueOf(trueMethodeList.get(c - 1).getNb_tentative_echouee()));
                         }
                         break;
                     case 3:
                         if (c == 0) {
                             tv.setText("Réussites");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getNb_tentative_reussie()));
+                            tv.setText(String.valueOf(trueMethodeList.get(c - 1).getNb_tentative_reussie()));
                         }
                         break;
                 }

@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Android Password</string>
     <string name="action_settings">A propos</string>
-    <string name="security">Sécurité</string>
-    <string name="usability">Utilisabilité</string>
+    <string name="security">Niveau de sécurité</string>
+    <string name="usability">Niveau d\'utilisabilité</string>
     <string name="icon_number">Nombre d\'icônes pendant une phase :</string>
     <string name="doublons">Interdire les doublons</string>
     <string name="configurations">Configurations</string>

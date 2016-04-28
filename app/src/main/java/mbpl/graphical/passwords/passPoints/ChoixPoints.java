@@ -21,7 +21,7 @@ import java.util.List;
 
 import mbpl.graphical.passwords.R;
 import mbpl.graphical.passwords.sqlite.MethodeManager;
-import mbpl.graphical.passwords.sqlite.Passpoint;
+import mbpl.graphical.passwords.sqlite.Passpoints;
 
 public class ChoixPoints extends AppCompatActivity {
 
@@ -115,7 +115,7 @@ public class ChoixPoints extends AppCompatActivity {
 
                 MethodeManager mm = new MethodeManager(getApplicationContext());
                 mm.open();
-                mm.setPassword(new Passpoint(), myMdp.toString());
+                mm.setPassword(new Passpoints(), myMdp.toString());
                 mm.close();
 
                 startActivity(appel);

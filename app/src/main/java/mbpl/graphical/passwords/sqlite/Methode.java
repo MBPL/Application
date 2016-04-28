@@ -7,9 +7,10 @@ public abstract class Methode {
 
     protected int id, bruteForce, dictionaryAttack, shoulderSurfing, smudgeAttack, eyeTracking, spyWare, espaceMdp;
     protected int apprentissage, memorisation, temps, satisfaction, nb_tentative_reussie, nb_tentative_echouee;
-    protected String nom, categorie, mdp;
+    protected String nom, categorie, mdp, description;
     protected Float indiceSecurite, indiceUtilisabilite, temps_auth_moyen;
-    protected int nbImage, doublon;
+    protected int param1, param2;
+    protected Class creation, authentification;
 
     public int getId() {
         return id;
@@ -111,19 +112,31 @@ public abstract class Methode {
         this.mdp = motDePasse;
     }
 
-    public int getNbImage() {
-        return nbImage;
+    public int getParam1() {
+        return param1;
     }
 
-    public void setNbImage(int nbImage) {
-        this.nbImage = nbImage;
+    public void setParam1(int param1) {
+        this.param1 = param1;
     }
 
-    public boolean getDoublon() {
-        return (doublon == 1);
+    public boolean getParam2() {
+        return (param2 == 1);
     }
 
-    public void setDoublon(int doublon) {
-        this.doublon = doublon;
+    public void setParam2(int param2) {
+        this.param2 = param2;
+    }
+
+    public Class getCreation() {
+        return creation;
+    }
+
+    public Class getAuthentification() {
+        return authentification;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

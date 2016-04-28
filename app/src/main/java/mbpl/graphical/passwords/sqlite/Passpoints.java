@@ -1,14 +1,20 @@
 package mbpl.graphical.passwords.sqlite;
 
+import mbpl.graphical.passwords.passPoints.ChoixImage;
+import mbpl.graphical.passwords.passPoints.Deverouillage;
+
 /**
  * Created by Matteo on 26/04/2016.
- * Methode Passpoint.
+ * Methode Passpoints.
  */
-public class Passpoint extends Methode {
+public class Passpoints extends Methode {
 
-    public Passpoint() {
+    public Passpoints() {
         this.id = 2;
-        this.nom = "Passpoint";
+        this.creation = ChoixImage.class;
+        this.authentification = Deverouillage.class;
+        this.description = "- Choisir une image.\n- Choisir au moins un point à repérer sur cette image.\n- Faire 'Suivant'.\n- Retrouver ces points.";
+        this.nom = "Passpoints";
         this.categorie = "rappel indicé";
         this.bruteForce = 5;
         this.dictionaryAttack = 3;
@@ -29,8 +35,8 @@ public class Passpoint extends Methode {
         this.temps_auth_moyen = 0f;
         this.mdp = "";
 
-        this.nbImage = 0;
-        this.doublon = 0;
+        this.param1 = 0;
+        this.param2 = 0;
     }
 
 }

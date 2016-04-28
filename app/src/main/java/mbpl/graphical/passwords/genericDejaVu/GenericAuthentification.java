@@ -46,7 +46,7 @@ public abstract class GenericAuthentification extends AppCompatActivity {
         methodeManager.open();
         methode = methodeManager.getMethode(methode);
         trueMotDePasse = Tools.stringArrayToIntArray(methode.getMdp());
-        int nbImageParPhase = methode.getNbImage();
+        int nbImageParPhase = methode.getParam1();
         switch (nbImageParPhase) {
             case 6:
                 nbLigne = 3;

@@ -50,7 +50,7 @@ public class Configuration extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        int myValue = dejaVu.getNbImage();
+        int myValue = dejaVu.getParam1();
         final int spinnerPosition = adapter.getPosition(myValue);
         spinner.setSelection(spinnerPosition);
 
@@ -58,8 +58,8 @@ public class Configuration extends Activity {
         // Gestion de la checkbox
 
         final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBoxDoublons);
-        checkBox.setChecked(dejaVu.getDoublon());
-        checkBox.setEnabled(false); // TODO fonction à développer ou supprimer
+        checkBox.setChecked(dejaVu.getParam2());
+        checkBox.setEnabled(false);
 
 
         // Gestion des boutons

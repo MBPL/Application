@@ -17,13 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import mbpl.graphical.passwords.sqlite.DejaVu;
-import mbpl.graphical.passwords.sqlite.Methode;
-import mbpl.graphical.passwords.sqlite.Passfaces;
-import mbpl.graphical.passwords.sqlite.Passpoint;
+import static mbpl.graphical.passwords.ImplementedMethods.implementedMethods;
 
 
 public class TabFragment3 extends Fragment {
@@ -51,13 +45,7 @@ public class TabFragment3 extends Fragment {
         Point size = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
 
-        // TODO AJOUTER VOTRE METHODE A CETTE LISTE (une ligne à ajouter)
-        List<Methode> methodeList = new ArrayList<Methode>();
-        methodeList.add(new Passpoint());
-        methodeList.add(new DejaVu());
-        methodeList.add(new Passfaces());
-
-        for (int c = 0; c < methodeList.size() + 1; c++) {
+        for (int c = 0; c < implementedMethods.size() + 1; c++) {
             for (int l = 0; l < 15; l++) {
 
                 tv = new TextView(getActivity());
@@ -67,120 +55,116 @@ public class TabFragment3 extends Fragment {
                         if (c == 0) {
                             tv.setText("Nom");
                         } else {
-                            tv.setText(methodeList.get(c - 1).getNom());
+                            tv.setText(implementedMethods.get(c - 1).getNom());
                         }
                         break;
                     case 1:
                         if (c == 0) {
                             tv.setText("Categorie");
                         } else {
-                            tv.setText(methodeList.get(c - 1).getCategorie());
+                            tv.setText(implementedMethods.get(c - 1).getCategorie());
                         }
                         break;
                     case 2:
                         if (c == 0) {
                             tv.setText("BruteForceAttack");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getBruteForce()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getBruteForce()));
                         }
                         break;
                     case 3:
                         if (c == 0) {
                             tv.setText("DictionnaryAttack");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getDictionaryAttack()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getDictionaryAttack()));
                         }
                         break;
                     case 4:
                         if (c == 0) {
                             tv.setText("ShoulderSurfingAttack");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getShoulderSurfing()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getShoulderSurfing()));
                         }
                         break;
                     case 5:
                         if (c == 0) {
                             tv.setText("SmudgeAttack");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getSmudgeAttack()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getSmudgeAttack()));
                         }
                         break;
                     case 6:
                         if (c == 0) {
                             tv.setText("EyeTrackingAttack");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getEyeTracking()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getEyeTracking()));
                         }
                         break;
                     case 7:
                         if (c == 0) {
                             tv.setText("SpyWareAttack");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getSpyWare()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getSpyWare()));
                         }
                         break;
                     case 8:
                         if (c == 0) {
                             tv.setText("EspaceMDP");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getEspaceMdp()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getEspaceMdp()));
                         }
                         break;
                     case 9:
                         if (c == 0) {
                             tv.setText("IndiceSecurite");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getIndiceSecurite()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getIndiceSecurite()));
                         }
                         break;
                     case 10:
                         if (c == 0) {
                             tv.setText("Apprentissage");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getApprentissage()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getApprentissage()));
                         }
                         break;
                     case 11:
                         if (c == 0) {
                             tv.setText("Memorisation");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getMemorisation()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getMemorisation()));
                         }
                         break;
                     case 12:
                         if (c == 0) {
                             tv.setText("Temps");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getTemps()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getTemps()));
                         }
                         break;
                     case 13:
                         if (c == 0) {
                             tv.setText("Satisfaction");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getSatisfaction()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getSatisfaction()));
                         }
                         break;
                     case 14:
                         if (c == 0) {
                             tv.setText("IndiceUtilisabilite");
                         } else {
-                            tv.setText(String.valueOf(methodeList.get(c - 1).getIndiceUtilisabilite()));
+                            tv.setText(String.valueOf(implementedMethods.get(c - 1).getIndiceUtilisabilite()));
                         }
                         break;
                 }
 
                 p = new GridLayout.LayoutParams();
-                //p.height = screenHeight / 6;
-                //p.width = screenWidth;
                 p.setMargins(10, 5, 10, 5);
                 p.setGravity(Gravity.CENTER);
                 p.columnSpec = GridLayout.spec(c);
                 p.rowSpec = GridLayout.spec(l);
                 tv.setLayoutParams(p);
-                //glf3.setBackgroundColor(Color.RED);
                 glf3.addView(tv);
-
             }
         }
 

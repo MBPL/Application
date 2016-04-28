@@ -54,10 +54,10 @@ public class MethodeManager {
     protected static final int NUM_COL_ESPACE_MDP = 18;
     protected static final String COL_MDP = "mdp";
     protected static final int NUM_COL_MDP = 19;
-    protected static final String COL_NBIMAGE = "nb_image";
-    protected static final int NUM_COL_NBIMAGE = 20;
-    protected static final String COL_DOUBLON = "doublon";
-    protected static final int NUM_COL_DOUBLON = 21;
+    protected static final String COL_PARAM1 = "param1";
+    protected static final int NUM_COL_PARAM1 = 20;
+    protected static final String COL_PARAM2 = "param2";
+    protected static final int NUM_COL_PARAM2 = 21;
 
     protected SQLiteDatabase db;
     protected MySQLiteDatabase maBaseSQLite;
@@ -69,7 +69,6 @@ public class MethodeManager {
 
     /**
      * Retourne la méthode depuis la bdd.
-     * TODO trouver quelque chose de plus élégant que de devoir mettre la methode en param/return (que id?)
      *
      * @return la méthode
      */
@@ -84,8 +83,8 @@ public class MethodeManager {
             methode.setNb_tentative_reussie(c.getInt(NUM_COL_TENTATIVEREUSSIE));
             methode.setTemps_auth_moyen(c.getFloat(NUM_COL_TEMPSMOYEN));
             methode.setMdp(c.getString(NUM_COL_MDP));
-            methode.setNbImage(c.getInt(NUM_COL_NBIMAGE));
-            methode.setDoublon(c.getInt(NUM_COL_DOUBLON));
+            methode.setParam1(c.getInt(NUM_COL_PARAM1));
+            methode.setParam2(c.getInt(NUM_COL_PARAM2));
             c.close();
         }
 
@@ -94,7 +93,6 @@ public class MethodeManager {
 
     /**
      * Retourne vrai si une méthode est dans la base de donnée, faux le contraire.
-     * TODO trouver quelque chose de plus élégant que de devoir mettre la methode en param (que id?)
      *
      * @return boolean.
      */
@@ -149,8 +147,8 @@ public class MethodeManager {
         values.put(COL_TEMPSMOYEN, methode.getTemps_auth_moyen());
         values.put(COL_ESPACE_MDP, methode.getEspaceMdp());
         values.put(COL_MDP, methode.getMdp());
-        values.put(COL_NBIMAGE, methode.getNbImage());
-        values.put(COL_DOUBLON, methode.getDoublon());
+        values.put(COL_PARAM1, methode.getParam1());
+        values.put(COL_PARAM2, methode.getParam2());
 
         return db.insertWithOnConflict(TABLE_NAME, null,
                 values, SQLiteDatabase.CONFLICT_FAIL);
@@ -245,8 +243,8 @@ public class MethodeManager {
     public int updateConfiguration(Methode methode, int nbIcone, boolean doublon) {
         int id = methode.getId();
         ContentValues values = new ContentValues();
-        values.put(COL_NBIMAGE, nbIcone);
-        values.put(COL_DOUBLON, doublon);
+        values.put(COL_PARAM1, nbIcone);
+        values.put(COL_PARAM2, doublon);
         return db.update(TABLE_NAME, values, COL_ID + " = " + id, null);
     }
 
@@ -283,7 +281,7 @@ public class MethodeManager {
      * @return
      */
     public boolean doublon(Methode methode) {
-        return methode.getDoublon();
+        return methode.getParam2();
     }
 
     /**

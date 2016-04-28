@@ -21,7 +21,7 @@
  * Modifié par LACHERAY Benjamin
  **/
 
-package mbpl.graphical.passwords.customProgressBar;
+package mbpl.graphical.passwords.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;
