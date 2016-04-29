@@ -22,10 +22,10 @@ public class DejaVu extends Methode {
         this.dictionaryAttack = 2;
         this.shoulderSurfing = 2;
         this.smudgeAttack = 5;
-        this.eyeTracking = 5;
+        this.eyeTracking = 3;
         this.spyWare = 3;
         this.espaceMdp = 1;
-        this.indiceSecurite = 2.57f;
+        this.indiceSecurite = 2.29f;
         this.apprentissage = 2;
         this.memorisation = 3;
         this.temps = 3;
