@@ -199,7 +199,7 @@ public class TabFragment3 extends Fragment {
                 p.columnSpec = GridLayout.spec(c);
                 p.rowSpec = GridLayout.spec(l);
                 tv.setLayoutParams(p);
-                tv.setTextSize(20);
+                tv.setTextSize(15);
                 glf3.addView(tv);
             }
         }
