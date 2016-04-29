@@ -72,21 +72,21 @@ public class TabFragment2 extends Fragment {
                         break;
                     case 1:
                         if (c == 0) {
-                            tv.setText("Temps moyen");
+                            tv.setText("Temps moyen (s)");
                         } else {
                             tv.setText(String.valueOf((float) ((int) (trueMethodeList.get(c - 1).getTemps_auth_moyen() * 100f)) / 100f));
                         }
                         break;
                     case 2:
                         if (c == 0) {
-                            tv.setText("Echecs");
+                            tv.setText("Nombre d'échecs");
                         } else {
                             tv.setText(String.valueOf(trueMethodeList.get(c - 1).getNb_tentative_echouee()));
                         }
                         break;
                     case 3:
                         if (c == 0) {
-                            tv.setText("Réussites");
+                            tv.setText("Nombre \nd'authentifications\nréussies");
                         } else {
                             tv.setText(String.valueOf(trueMethodeList.get(c - 1).getNb_tentative_reussie()));
                         }
@@ -95,7 +95,7 @@ public class TabFragment2 extends Fragment {
 
                 p = new GridLayout.LayoutParams();
                 p.setMargins(10, 5, 10, 5);
-                p.setGravity(Gravity.CENTER);
+                p.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
                 p.columnSpec = GridLayout.spec(c);
                 p.rowSpec = GridLayout.spec(l);
                 tv.setLayoutParams(p);

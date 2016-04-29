@@ -76,4 +76,6 @@ public class Accueil extends Activity {
         super.onDestroy();
     }
 
+
+
 }
