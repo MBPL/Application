@@ -13,9 +13,9 @@ public class DejaVu extends Methode {
         this.id = 1;
         this.creation = Accueil.class;
         this.authentification = Authentification.class;
-        this.description = "- Choisir une suite d'images.\n" +
-                "- Appuyer sur 'Valider'.\n" +
-                "- Cliquer sur les images dans l'ordre pour vous authentifier.";
+        this.description = "L’utilisateur fera tout d’abord une sélection d’un nombre quelconque " +
+                "d’images. Pour s’identifier, il devra alors retrouver les images qu’il a choisies " +
+                "précédemment dans une plus large sélection d’images disposées aléatoirement.";
         this.nom = "Déjà Vu";
         this.categorie = "reconnaissance";
         this.bruteForce = 0;

@@ -13,7 +13,9 @@ public class Passpoints extends Methode {
         this.id = 2;
         this.creation = ChoixImage.class;
         this.authentification = Deverouillage.class;
-        this.description = "- Choisir une image.\n- Choisir au moins un point à repérer sur cette image.\n- Faire 'Suivant'.\n- Retrouver ces points.";
+        this.description = "L’utilisateur choisit une image ainsi que des points à repérer sur " +
+                "cette image; quand il devra se connecter, le système lui demandera de retrouver " +
+                "ces points sur l’image, habituellement il devra sélectionner 4 ou 5 points.";
         this.nom = "Passpoints";
         this.categorie = "rappel indicé";
         this.bruteForce = 5;
