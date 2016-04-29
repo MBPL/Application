@@ -42,6 +42,7 @@ public class Deverouillage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.passpoints__deverouillage);
+        final Toast mToast = Toast.makeText(Deverouillage.this, "", Toast.LENGTH_SHORT);
 
         /**** Récupére les infos dans la BDD ****/
         MethodeManager methodeManager = new MethodeManager(getApplicationContext());
@@ -110,7 +111,8 @@ public class Deverouillage extends AppCompatActivity {
                                     methodeManager.addTentativeReussie(methode, difference);
                                     methodeManager.close();
 
-                                    Toast.makeText(Deverouillage.this, "Mot de passe validé !", Toast.LENGTH_SHORT).show();
+                                    mToast.setText("Mot de passe validé !");
+                                    mToast.show();
                                     Intent appel = new Intent(Deverouillage.this, Accueil.class);
                                     startActivity(appel);
                                 }
@@ -123,7 +125,8 @@ public class Deverouillage extends AppCompatActivity {
                                 methodeManager.addTentativeEchouee(methode);
                                 methodeManager.close();
 
-                                Toast.makeText(Deverouillage.this, "Mot de passe incorrect\nVeuillez recommencer", Toast.LENGTH_SHORT).show();
+                                mToast.setText("Mot de passe incorrect\nVeuillez recommencer");
+                                mToast.show();
                             }
                         }
                         break;

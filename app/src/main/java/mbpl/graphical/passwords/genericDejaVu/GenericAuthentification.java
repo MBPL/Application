@@ -40,8 +40,12 @@ public abstract class GenericAuthentification extends AppCompatActivity {
     private List<Integer> inputMotDePasse = new ArrayList<>();
     private long time;
 
+    private Toast mToast;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mToast = Toast.makeText(this.here, "", Toast.LENGTH_SHORT);
+
         methodeManager = new MethodeManager(getApplicationContext());
         methodeManager.open();
         methode = methodeManager.getMethode(methode);
@@ -169,7 +173,8 @@ public abstract class GenericAuthentification extends AppCompatActivity {
             if (inputMotDePasse.equals(trueMotDePasse)) {
                 time = System.currentTimeMillis() - time; // temps de l'authentification
                 inputMotDePasse.clear();
-                Toast.makeText(GenericAuthentification.this, "Authentification OK !", Toast.LENGTH_LONG).show();
+                mToast.setText("Authentification OK !");
+                mToast.show();
                 Intent accueil = new Intent(here, nextClass);
                 methodeManager.addTentativeReussie(methode, (float) time / 1000);
                 methodeManager.close();
@@ -177,7 +182,8 @@ public abstract class GenericAuthentification extends AppCompatActivity {
             } else {
                 methodeManager.addTentativeEchouee(methode);
                 methodeManager.close();
-                Toast.makeText(GenericAuthentification.this, "Authentification échouée", Toast.LENGTH_LONG).show();
+                mToast.setText("Authentification échouée");
+                mToast.show();
                 inputMotDePasse.clear();
                 drawAndSetListeners(trueMotDePasse.get(inputMotDePasse.size()));
             }
