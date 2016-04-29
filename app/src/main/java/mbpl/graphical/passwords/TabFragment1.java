@@ -57,7 +57,7 @@ public class TabFragment1 extends Fragment {
 
     public void showAlertDescription(final int j) {
 
-        AlertDialog.Builder myAlert = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder myAlert = new AlertDialog.Builder(getActivity());
         myAlert.setMessage(implementedMethods.get(j).getDescription())
                 .setPositiveButton("Essayer !", new DialogInterface.OnClickListener() {
                     @Override
@@ -67,8 +67,14 @@ public class TabFragment1 extends Fragment {
                         startActivity(appel);
                     }
                 })
-                .setNegativeButton("Reprendre", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Retour", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
 
+                })
+                .setNeutralButton("Reprendre", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent appel;

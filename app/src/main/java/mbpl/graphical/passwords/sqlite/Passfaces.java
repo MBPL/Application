@@ -14,7 +14,7 @@ public class Passfaces extends Methode {
         this.creation = Creation.class;
         this.authentification = Authentification.class;
         this.description = "L’utilisateur choisit un ensemble d’images de visages humains et " +
-                "les sélectionne parmi des images leurré pour l’authentification. " +
+                "les sélectionne parmi des images aléatoires pour l’authentification. " +
                 "A chaque phase de l'authentification, il faut sélectionner un visage parmi une grille de 9 visages.";
         this.nom = "Passfaces";
         this.categorie = "reconnaissance";
